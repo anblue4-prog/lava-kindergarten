@@ -11,19 +11,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Jua&display=swap" rel="stylesheet">
 
 <style>
-/* ============ 해바라기 들판 팔레트 ============ */
+/* ============ 라바 코랄·세이지 팔레트 ============ */
 :root {
-  --bg:        #FFFDF0;
-  --bg-soft:   #FFF8D6;
-  --bg-deeper: #FEF0A0;
-  --accent:    #F2C12E;
-  --accent-2:  #4A9E6F;
-  --accent-3:  #2E7D52;
-  --coral:     #FFB3A0;
-  --ink:       #3A2800;
-  --ink-soft:  #6B4C10;
-  --ink-mute:  #9A7A3A;
-  --line:      #EDE0B0;
+  --bg:        #FBF8F2;
+  --bg-soft:   #F2F6EE;
+  --bg-deeper: #E6EFE2;
+  --accent:    #FF9D75;
+  --accent-2:  #4FA98A;
+  --accent-3:  #2E7A63;
+  --coral:     #FFC7B0;
+  --ink:       #2E2B22;
+  --ink-soft:  #5C5847;
+  --ink-mute:  #948E78;
+  --line:      #E6E0D2;
   --card:      #FFFFFF;
 
   --font-display: "Nanum Myeongjo", "Gowun Batang", serif;
@@ -201,7 +201,7 @@ section { padding: 120px 0; position: relative; }
   background: var(--accent); flex-shrink: 0;
 }
 .hero h1 {
-  font-size: clamp(42px, 6.8vw, 88px);
+  font-size: clamp(34px, 5.4vw, 64px);
   line-height: 1.08;
   margin: 28px 0 24px;
   color: #fff;
@@ -230,7 +230,7 @@ section { padding: 120px 0; position: relative; }
   50% { transform: translateX(-50%) translateY(6px); }
 }
 @media (max-width: 760px) {
-  .hero h1 { font-size: clamp(36px, 9vw, 56px); }
+  .hero h1 { font-size: clamp(30px, 8vw, 44px); }
   .hero-ctas { flex-direction: column; }
   .hero-ctas .btn { justify-content: center; }
 }
@@ -241,7 +241,7 @@ section { padding: 120px 0; position: relative; }
   font-family: var(--font-body); font-size: 13px; color: var(--accent-3);
   font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; display: block;
 }
-.sec-head h2 { font-size: clamp(30px, 3.6vw, 46px); text-wrap: balance; }
+.sec-head h2 { font-size: clamp(24px, 3vw, 36px); text-wrap: balance; }
 .sec-head p { color: var(--ink-soft); font-size: 15px; line-height: 1.75; }
 @media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; align-items: flex-start; gap: 18px; margin-bottom: 36px; } }
 
@@ -334,7 +334,7 @@ section { padding: 120px 0; position: relative; }
 .director-photo { aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; max-width: 320px; }
 .director-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% center; display: block; }
 .director-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.director-text .quote { font-family: var(--font-display); font-size: 26px; line-height: 1.55; margin-bottom: 28px; letter-spacing: -0.02em; }
+.director-text .quote { font-family: var(--font-display); font-size: 21px; line-height: 1.55; margin-bottom: 28px; letter-spacing: -0.02em; }
 .director-text .body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 28px; }
 .director-sig { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
 .director-sig span { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--ink-mute); margin-top: 4px; }
@@ -343,7 +343,7 @@ section { padding: 120px 0; position: relative; }
 /* ============ schedule ============ */
 .schedule-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
 .schedule-intro-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; display: block; }
-.schedule-intro h2 { font-size: clamp(28px, 3.2vw, 40px); margin-bottom: 20px; }
+.schedule-intro h2 { font-size: clamp(22px, 2.6vw, 32px); margin-bottom: 20px; }
 .schedule-intro p { color: var(--ink-soft); font-size: 15px; line-height: 1.8; max-width: 340px; }
 .schedule-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
 .schedule-item {
@@ -401,7 +401,7 @@ section { padding: 120px 0; position: relative; }
 .blob { position: absolute; pointer-events: none; filter: blur(60px); opacity: 0.5; border-radius: 50%; z-index: 0; }
 .admission-inner { position: relative; z-index: 2; }
 .admission-label { font-family: var(--font-body); font-size: 13px; color: var(--accent); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.admission h2 { color: var(--bg); font-size: clamp(28px, 3.6vw, 48px); max-width: 640px; margin-bottom: 24px; }
+.admission h2 { color: var(--bg); font-size: clamp(20px, 2.4vw, 28px); max-width: 640px; margin-bottom: 24px; }
 .admission-body { color: color-mix(in srgb, var(--bg) 72%, transparent); max-width: 560px; line-height: 1.8; margin-bottom: 40px; font-size: 16px; }
 .admission .btn-sun { background: var(--accent); color: var(--ink); }
 .admission .btn-ghost-white { color: var(--bg); border-color: rgba(255,255,255,0.35); }
@@ -582,7 +582,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         </div>
         <div class="prog-card-body">
           <h3>초록 숲으로 숲체험</h3>
-          <p>선생님과 함께 걷고 관찰하는 바깥세상 자연 체험</p>
+          <p>숲전문가 선생님과 함께 걷고 관찰하는 바깥세상 자연체험</p>
         </div>
       </div>
       <div class="prog-card v4">
