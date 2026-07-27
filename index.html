@@ -361,17 +361,15 @@ section { padding: 120px 0; position: relative; }
 }
 
 /* ============ gallery ============ */
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 24px; align-items: start; }
 .gallery-grid .tile { border-radius: var(--radius-lg); overflow: hidden; position: relative; transition: transform .4s var(--ease); background: var(--card); }
 .gallery-grid .tile:hover { transform: scale(0.98); }
 .gallery-grid .tile img { width: 100%; height: auto; display: block; transition: transform .4s var(--ease); }
 .gallery-grid .tile:hover img { transform: scale(1.03); }
-.gallery-grid .tile.wide { grid-column: 1 / -1; }
-@media (max-width: 860px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 520px) {
-  .gallery-grid { grid-template-columns: 1fr; }
+.gallery-grid .tile:nth-child(even) { margin-top: 56px; }
+@media (max-width: 640px) {
+  .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+  .gallery-grid .tile:nth-child(even) { margin-top: 0; }
 }
 
 /* ============ location ============ */
@@ -671,7 +669,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       <p>자연광이 가득한 교실과 오감을 자극하는 놀이 공간. 사진으로 라바어린이집을 미리 만나보세요.</p>
     </div>
     <div class="gallery-grid">
-      <div class="tile wide"><img src="images/시설_외관.png" alt="어린이집 외관"></div>
       <div class="tile a"><img src="images/시설_입구.png" alt="입구"></div>
       <div class="tile b"><img src="images/시설_북카페.png" alt="북카페"></div>
       <div class="tile c"><img src="images/시설_복도.png" alt="복도"></div>
