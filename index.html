@@ -329,12 +329,15 @@ section { padding: 120px 0; position: relative; }
 
 /* ============ director ============ */
 .director { background: var(--bg-deeper); }
-.director-grid { max-width: 720px; margin: 0 auto; }
+.director-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: center; }
+.director-photo { aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; max-width: 320px; }
+.director-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .director-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; display: block; }
 .director-text .quote { font-family: var(--font-display); font-size: 26px; line-height: 1.55; margin-bottom: 28px; letter-spacing: -0.02em; }
 .director-text .body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 28px; }
 .director-sig { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
 .director-sig span { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--ink-mute); margin-top: 4px; }
+@media (max-width: 860px) { .director-grid { grid-template-columns: 1fr; gap: 36px; } .director-photo { max-width: 220px; } }
 
 /* ============ schedule ============ */
 .schedule-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
@@ -612,6 +615,9 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 <!-- DIRECTOR -->
 <section class="director" id="director">
   <div class="container director-grid">
+    <div class="director-photo">
+      <img src="images/원장님.png" alt="라바어린이집 원장님">
+    </div>
     <div class="director-text">
       <span class="director-label">원장님 인사말</span>
       <p class="quote">
