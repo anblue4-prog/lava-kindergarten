@@ -396,10 +396,10 @@ section { padding: 120px 0; position: relative; }
 /* ============ admission ============ */
 .admission-section { padding: 60px 0; }
 .admission {
-  background-color: #FFFAEA;
+  background-color: var(--bg);
   background-image:
-    repeating-linear-gradient(to right, rgba(255,205,60,0.55) 0 24px, transparent 24px 48px),
-    repeating-linear-gradient(to bottom, rgba(255,205,60,0.55) 0 24px, transparent 24px 48px);
+    repeating-linear-gradient(to right, color-mix(in srgb, var(--accent) 45%, transparent) 0 24px, transparent 24px 48px),
+    repeating-linear-gradient(to bottom, color-mix(in srgb, var(--accent-2) 35%, transparent) 0 24px, transparent 24px 48px);
   color: var(--ink);
   border-radius: var(--radius-xl); padding: 72px 56px; margin: 0 32px;
   position: relative; overflow: hidden;
@@ -749,7 +749,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 <section class="admission-section">
   <div class="admission">
     <div class="blob" style="width:340px;height:340px;background:#fff;top:-100px;right:-80px;"></div>
-    <div class="blob" style="width:280px;height:280px;background:#FFC94D;bottom:-80px;left:40px;"></div>
+    <div class="blob" style="width:280px;height:280px;background:var(--accent-2);bottom:-80px;left:40px;"></div>
     <div class="admission-inner">
       <span class="admission-label">입소 상담 안내</span>
       <h2>마음이 맞는 아이와 가족을<br>기다리고 있습니다</h2>
