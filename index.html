@@ -332,17 +332,24 @@ section { padding: 120px 0; position: relative; }
 
 
 /* ============ director ============ */
-.director { background: var(--bg-deeper); }
-.director-grid { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: start; }
-.director-photo { position: sticky; top: 100px; aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
-.director-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% center; display: block; }
-.director-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.director-text .quote { font-family: var(--font-display); font-size: 25px; font-weight: 700; color: var(--ink); line-height: 1.5; margin-bottom: 28px; letter-spacing: -0.02em; text-wrap: balance; }
-.director-text .body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 28px; }
-.director-text .stanza { font-family: var(--font-display); font-size: 16.5px; color: var(--ink); line-height: 1.9; margin: 0 0 28px; padding-left: 20px; border-left: 3px solid var(--accent); }
-.director-sig { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
-.director-sig span { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--ink-mute); margin-top: 4px; }
-@media (max-width: 860px) { .director-grid { grid-template-columns: 1fr; gap: 36px; } .director-photo { position: static; max-width: 220px; } }
+.director { background: #FBF3E6; padding: 0; }
+.director-split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 680px; }
+.director-photo-half { position: relative; overflow: hidden; background: #EADFCB; }
+.director-photo-half img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; }
+.director-text-half { display: flex; align-items: center; padding: 88px 72px; }
+.director-text-inner { max-width: 540px; }
+.director-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+.director-text .quote { font-family: var(--font-display); font-size: 27px; font-weight: 700; color: #16223E; line-height: 1.45; margin-bottom: 28px; letter-spacing: -0.02em; text-wrap: balance; }
+.director-text .body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 24px; }
+.director-text .stanza { font-family: var(--font-display); font-size: 16.5px; color: var(--ink); line-height: 1.9; margin: 0 0 24px; padding-left: 20px; border-left: 3px solid var(--accent); }
+.director-sig { margin-top: 32px; text-align: right; }
+.director-sig .sig-org { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-mute); margin-bottom: 6px; }
+.director-sig .sig-name { display: block; font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #16223E; }
+@media (max-width: 860px) {
+  .director-split { grid-template-columns: 1fr; min-height: auto; }
+  .director-photo-half { aspect-ratio: 4/5; }
+  .director-text-half { padding: 48px 24px; }
+}
 
 /* ============ schedule ============ */
 .schedule-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
@@ -619,11 +626,11 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 
 <!-- DIRECTOR -->
 <section class="director" id="director">
-  <div class="container director-grid">
-    <div class="director-photo">
+  <div class="director-split">
+    <div class="director-photo-half">
       <img src="images/원장님.png" alt="라바어린이집 원장님">
     </div>
-    <div class="director-text">
+    <div class="director-text-half"><div class="director-text-inner">
       <span class="director-label">원장님 인사말</span>
       <p class="quote">아이의 속도를 존중하는 교육</p>
       <p class="body">
@@ -654,9 +661,10 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         부모님과 함께 행복한 하루를 만들어가겠습니다.
       </p>
       <div class="director-sig">
-        라바어린이집 원장
+        <span class="sig-org">공공형 라바어린이집</span>
+        <span class="sig-name">원장 권영인</span>
       </div>
-    </div>
+    </div></div>
   </div>
 </section>
 
