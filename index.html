@@ -330,6 +330,14 @@ section { padding: 120px 0; position: relative; }
 .btn-insta-cta svg { width: 16px; height: 16px; }
 @media (max-width: 600px) { .sec-insta-cta { padding: 22px; } .sec-insta-cta-title { font-size: 16px; } }
 
+/* ============ anthem ============ */
+.anthem { background: var(--bg-soft); }
+.anthem-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+.anthem-inner .label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+.anthem-inner h2 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 14px; }
+.anthem-inner p { color: var(--ink-soft); font-size: 15px; line-height: 1.75; margin-bottom: 32px; }
+.anthem-video { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background: #000; display: block; }
+
 /* ============ director ============ */
 .director { background: var(--bg-deeper); }
 .director-grid { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: start; }
@@ -611,6 +619,16 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         <svg class="arrow-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ANTHEM -->
+<section class="anthem">
+  <div class="container anthem-inner">
+    <span class="label">Song</span>
+    <h2>라바어린이집 원가</h2>
+    <p>아이들이 매일 함께 부르는 라바어린이집 원가를 들려드려요.</p>
+    <video class="anthem-video" src="media/라바원가.mp4" controls playsinline preload="metadata"></video>
   </div>
 </section>
 
