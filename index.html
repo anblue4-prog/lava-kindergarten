@@ -396,22 +396,26 @@ section { padding: 120px 0; position: relative; }
 /* ============ admission ============ */
 .admission-section { padding: 60px 0; }
 .admission {
-  background: #FF5C93; color: #fff;
+  background-color: #FFFAEA;
+  background-image:
+    repeating-linear-gradient(to right, rgba(255,205,60,0.55) 0 24px, transparent 24px 48px),
+    repeating-linear-gradient(to bottom, rgba(255,205,60,0.55) 0 24px, transparent 24px 48px);
+  color: var(--ink);
   border-radius: var(--radius-xl); padding: 72px 56px; margin: 0 32px;
   position: relative; overflow: hidden;
 }
-.blob { position: absolute; pointer-events: none; filter: blur(60px); opacity: 0.5; border-radius: 50%; z-index: 0; }
+.blob { position: absolute; pointer-events: none; filter: blur(60px); opacity: 0.35; border-radius: 50%; z-index: 0; }
 .admission-inner { position: relative; z-index: 2; }
-.admission-label { font-family: var(--font-body); font-size: 13px; color: #FFE1EC; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.admission h2 { color: #fff; font-size: clamp(20px, 2.4vw, 28px); max-width: 640px; margin-bottom: 24px; }
-.admission-body { color: rgba(255,255,255,0.85); max-width: 560px; line-height: 1.8; margin-bottom: 40px; font-size: 16px; }
-.admission .btn-sun { background: #fff; color: #FF5C93; }
-.admission .btn-ghost-white { color: #fff; border-color: rgba(255,255,255,0.5); }
-.admission .btn-ghost-white:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.8); }
+.admission-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+.admission h2 { color: var(--ink); font-size: clamp(20px, 2.4vw, 28px); max-width: 640px; margin-bottom: 24px; }
+.admission-body { color: color-mix(in srgb, var(--ink) 78%, transparent); max-width: 560px; line-height: 1.8; margin-bottom: 40px; font-size: 16px; }
+.admission .btn-sun { background: var(--ink); color: #fff; }
+.admission .btn-ghost-white { color: var(--ink); border-color: rgba(46,37,29,0.3); }
+.admission .btn-ghost-white:hover { background: rgba(255,255,255,0.4); border-color: rgba(46,37,29,0.55); }
 .admission-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.admission-ages { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.25); }
-.admission-age { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,0.18); font-size: 13.5px; display: flex; gap: 10px; align-items: center; color: #fff; }
-.admission-age strong { font-family: var(--font-display); font-weight: 700; color: #FFE1EC; }
+.admission-ages { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(46,37,29,0.15); }
+.admission-age { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,0.55); font-size: 13.5px; display: flex; gap: 10px; align-items: center; color: var(--ink); }
+.admission-age strong { font-family: var(--font-display); font-weight: 700; color: var(--accent-3); }
 @media (max-width: 760px) {
   .admission { padding: 48px 28px; margin: 0 16px; }
   .admission-btns { flex-direction: column; }
@@ -745,7 +749,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 <section class="admission-section">
   <div class="admission">
     <div class="blob" style="width:340px;height:340px;background:#fff;top:-100px;right:-80px;"></div>
-    <div class="blob" style="width:280px;height:280px;background:#C81E5C;bottom:-80px;left:40px;"></div>
+    <div class="blob" style="width:280px;height:280px;background:#FFC94D;bottom:-80px;left:40px;"></div>
     <div class="admission-inner">
       <span class="admission-label">입소 상담 안내</span>
       <h2>마음이 맞는 아이와 가족을<br>기다리고 있습니다</h2>
