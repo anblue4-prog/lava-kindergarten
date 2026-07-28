@@ -330,23 +330,6 @@ section { padding: 120px 0; position: relative; }
 .btn-insta-cta svg { width: 16px; height: 16px; }
 @media (max-width: 600px) { .sec-insta-cta { padding: 22px; } .sec-insta-cta-title { font-size: 16px; } }
 
-/* ============ anthem ============ */
-.anthem { background: var(--bg-soft); }
-.anthem-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-.anthem-inner .label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; display: block; }
-.anthem-inner h2 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 14px; }
-.anthem-inner p { color: var(--ink-soft); font-size: 15px; line-height: 1.75; margin-bottom: 32px; }
-.anthem-video-wrap { position: relative; }
-.anthem-video { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background: #000; display: block; }
-.anthem-sound-btn {
-  position: absolute; top: 16px; right: 16px; z-index: 3;
-  padding: 9px 16px; border-radius: 999px; border: none;
-  background: rgba(0,0,0,0.55); color: #fff; font-family: var(--font-body);
-  font-size: 13px; font-weight: 600; cursor: pointer; backdrop-filter: blur(4px);
-  transition: background .2s var(--ease), transform .2s var(--ease);
-}
-.anthem-sound-btn:hover { background: rgba(0,0,0,0.75); transform: translateY(-1px); }
-.anthem-sound-btn.is-on { display: none; }
 
 /* ============ director ============ */
 .director { background: var(--bg-deeper); }
@@ -632,18 +615,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </div>
 </section>
 
-<!-- ANTHEM -->
-<section class="anthem">
-  <div class="container anthem-inner">
-    <span class="label">Song</span>
-    <h2>라바어린이집 원가</h2>
-    <p>아이들이 매일 함께 부르는 라바어린이집 원가를 들려드려요.</p>
-    <div class="anthem-video-wrap">
-      <video id="anthemVideo" class="anthem-video" src="media/라바원가.mp4" controls playsinline autoplay muted loop preload="auto"></video>
-      <button type="button" class="anthem-sound-btn" id="anthemSoundBtn" aria-label="소리 켜기">🔇 소리 켜기</button>
-    </div>
-  </div>
-</section>
+<audio id="bgm" src="media/라바원가.mp4" autoplay muted loop preload="auto" style="display:none"></audio>
 
 <!-- DIRECTOR -->
 <section class="director" id="director">
@@ -882,20 +854,17 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     }
   });
 
-  /* 원가 영상 소리 켜기 */
-  const anthemVideo = document.getElementById('anthemVideo');
-  const anthemSoundBtn = document.getElementById('anthemSoundBtn');
-  if (anthemVideo && anthemSoundBtn) {
-    anthemVideo.play().catch(() => {});
-    anthemSoundBtn.addEventListener('click', () => {
-      anthemVideo.muted = false;
-      anthemVideo.volume = 1;
-      anthemVideo.play().catch(() => {});
-      anthemSoundBtn.classList.add('is-on');
-    });
-    anthemVideo.addEventListener('volumechange', () => {
-      if (!anthemVideo.muted) anthemSoundBtn.classList.add('is-on');
-    });
+  /* 배경음악: 자동 재생 + 반복, 화면에 노출 없음 */
+  const bgm = document.getElementById('bgm');
+  if (bgm) {
+    bgm.play().catch(() => {});
+    const unmuteBgm = () => {
+      bgm.muted = false;
+      bgm.volume = 1;
+      bgm.play().catch(() => {});
+      ['click','touchstart','keydown','scroll'].forEach(evt => document.removeEventListener(evt, unmuteBgm));
+    };
+    ['click','touchstart','keydown','scroll'].forEach(evt => document.addEventListener(evt, unmuteBgm, { once: true, passive: true }));
   }
 
   /* 부드러운 스크롤 */
