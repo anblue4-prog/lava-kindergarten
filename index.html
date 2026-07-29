@@ -330,23 +330,52 @@ section { padding: 120px 0; position: relative; }
 
 /* ============ director ============ */
 .director { background: #FBF3E6; padding: 0; }
-.director-split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 680px; }
-.director-photo-half { position: relative; display: flex; align-items: center; justify-content: center; padding: 64px; }
-.director-photo-half img { width: 100%; max-width: 340px; aspect-ratio: 4/5; object-fit: cover; object-position: center 18%; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
-.director-text-half { display: flex; align-items: center; padding: 88px 72px; }
-.director-text-inner { max-width: 540px; }
-.director-label { font-family: var(--font-body); font-size: 13px; color: var(--accent-3); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.director-text .quote { font-family: var(--font-display); font-size: 27px; font-weight: 700; color: #16223E; line-height: 1.45; margin-bottom: 28px; letter-spacing: -0.02em; text-wrap: balance; }
-.director-text .body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 24px; }
-.director-text .stanza { font-family: var(--font-display); font-size: 16.5px; color: var(--ink); line-height: 1.9; margin: 0 0 24px; padding-left: 20px; border-left: 3px solid var(--accent); }
-.director-sig { margin-top: 32px; text-align: right; }
-.director-sig .sig-org { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-mute); margin-bottom: 6px; }
-.director-sig .sig-name { display: block; font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #16223E; }
+.director .container { max-width: 1200px; }
+.director-section-pad { padding: 100px 0; }
+.director-split { display: grid; grid-template-columns: 45fr 55fr; gap: 72px; align-items: start; }
+.director-photo-half { position: sticky; top: 100px; }
+.director-photo-half img {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center top;
+  display: block; border-radius: 20px; box-shadow: 0 20px 48px -20px rgba(22,34,62,0.25);
+}
+.director-text-half { max-width: 640px; }
+.director-label {
+  font-family: var(--font-body); font-size: 12px; color: var(--accent-3); font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 22px; display: block;
+}
+.director-text .quote {
+  font-family: var(--font-body); font-weight: 800; font-size: 48px; line-height: 1.35;
+  margin-bottom: 36px; letter-spacing: -0.02em;
+}
+.director-text .quote .line-navy { display: block; color: #16223E; }
+.director-text .quote .line-brown { display: block; color: #4A3B2E; }
+.director-text .body {
+  font-family: var(--font-body); font-weight: 500; font-size: 18px; color: #3C3A36;
+  line-height: 1.95; margin-bottom: 26px;
+}
+.director-text .stanza {
+  font-family: var(--font-body); font-weight: 700; font-size: 20px; color: #16223E;
+  line-height: 1.6; margin: 36px 0; padding: 18px 24px; border-left: 3px solid var(--accent-3);
+  background: rgba(22,34,62,0.04);
+}
+.director-text .stanza span { display: block; }
+.director-text .stanza span + span { margin-top: 18px; }
+.director-sig { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(22,34,62,0.14); }
+.director-sig .sig-org { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #A39C8F; margin-bottom: 8px; }
+.director-sig .sig-name { display: block; font-family: var(--font-body); font-size: 21px; font-weight: 700; color: #16223E; }
+.director-reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.director-text-half.director-reveal { transition-delay: .15s; }
+.director-reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .director-reveal { opacity: 1; transform: none; transition: none; } }
 @media (max-width: 860px) {
-  .director-split { grid-template-columns: 1fr; min-height: auto; }
-  .director-photo-half { padding: 40px 24px 8px; }
-  .director-photo-half img { max-width: 260px; }
-  .director-text-half { padding: 32px 24px 48px; }
+  .director-section-pad { padding: 64px 0; }
+  .director-split { grid-template-columns: 1fr; gap: 36px; }
+  .director-photo-half { position: static; }
+  .director-photo-half img { aspect-ratio: 4 / 5; max-width: 320px; margin: 0 auto; }
+  .director-text-half { max-width: none; }
+  .director-text .quote { font-size: 34px; margin-bottom: 24px; }
+  .director-text .body { font-size: 15.5px; line-height: 1.9; }
+  .director-text .stanza { font-size: 17px; }
 }
 
 /* ============ schedule ============ */
@@ -624,13 +653,14 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 
 <!-- DIRECTOR -->
 <section class="director" id="director">
+  <div class="director-section-pad container">
   <div class="director-split">
-    <div class="director-photo-half">
+    <div class="director-photo-half director-reveal">
       <img src="images/원장님.png" alt="라바어린이집 원장님">
     </div>
-    <div class="director-text-half"><div class="director-text-inner">
-      <span class="director-label">원장님 인사말</span>
-      <p class="quote">아이의 속도를 존중하는 교육</p>
+    <div class="director-text-half director-reveal"><div class="director-text-inner">
+      <span class="director-label">DIRECTOR'S MESSAGE</span>
+      <p class="quote"><span class="line-navy">아이의 속도를</span><span class="line-brown">존중하는 교육</span></p>
       <p class="body">
         어린이집을 선택할 때 거리와 시설, 프로그램도 중요하지만, 그보다 더 중요한 것은
         '우리 아이를 어떤 시선으로 바라보는 곳인가'라고 생각합니다.
@@ -639,9 +669,9 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         아이들은 걷는 속도도, 말을 배우는 속도도, 세상을 이해하는 속도도 저마다 다릅니다.
         누군가는 표현이 빠르고, 누군가는 천천히 마음을 열며, 또 다른 아이는 조심스럽게
         세상을 알아갑니다. 라바어린이집은 이런 아이들을 비교하거나 재촉하지 않고,
-        스스로 발견하고 성장할 때까지 기다려 주는 곳이 되고자 합니다.
+        스스로 발견하고 성장할 때까지 기다려주는 곳이 되고자 합니다.
       </p>
-      <p class="stanza">
+      <p class="body">
         충분히 놀며 배우고,<br>
         자연 속에서 몸과 마음을 키우며,<br>
         친구와의 관계 속에서 배려와 사회성을 배우고,<br>
@@ -652,10 +682,12 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         동반자입니다. 그리고 가장 좋은 교육은 가정과 어린이집이 같은 방향을 바라볼 때
         완성된다고 믿습니다.
       </p>
-      <p class="body">모든 아이는 있는 그대로 충분히 소중한 존재입니다.</p>
-      <p class="body">아이의 오늘이 행복해야 내일도 행복합니다.</p>
+      <p class="stanza">
+        <span>모든 아이는 있는 그대로<br>충분히 소중한 존재입니다.</span>
+        <span>아이의 오늘이 행복해야<br>내일도 행복합니다.</span>
+      </p>
       <p class="body">
-        라바어린이집은 앞으로도 아이 한 명, 한 명의 속도를 존중하며,
+        라바어린이집은 앞으로도 아이 한 명, 한 명의 속도를 존중하며
         부모님과 함께 행복한 하루를 만들어가겠습니다.
       </p>
       <div class="director-sig">
@@ -663,6 +695,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         <span class="sig-name">원장 권영인</span>
       </div>
     </div></div>
+  </div>
   </div>
 </section>
 
@@ -871,6 +904,22 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       ['click','touchstart','keydown','scroll'].forEach(evt => document.removeEventListener(evt, unmuteBgm));
     };
     ['click','touchstart','keydown','scroll'].forEach(evt => document.addEventListener(evt, unmuteBgm, { once: true, passive: true }));
+  }
+
+  /* 원장님 인사말 스크롤 등장 애니메이션 */
+  const revealEls = document.querySelectorAll('.director-reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
   /* 부드러운 스크롤 */
