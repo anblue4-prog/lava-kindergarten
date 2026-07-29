@@ -343,23 +343,23 @@ section { padding: 120px 0; position: relative; }
   font-family: var(--font-body); font-size: 12px; color: var(--accent-3); font-weight: 700;
   letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 22px; display: block;
 }
-.director-text .quote {
+.director-text-inner .quote {
   font-family: var(--font-body); font-weight: 800; font-size: 48px; line-height: 1.35;
   margin-bottom: 36px; letter-spacing: -0.02em;
 }
-.director-text .quote .line-navy { display: block; color: #16223E; }
-.director-text .quote .line-brown { display: block; color: #4A3B2E; }
-.director-text .body {
+.director-text-inner .quote .line-navy { display: block; color: #16223E; }
+.director-text-inner .quote .line-brown { display: block; color: #4A3B2E; }
+.director-text-inner .body {
   font-family: var(--font-body); font-weight: 500; font-size: 18px; color: #3C3A36;
   line-height: 1.95; margin-bottom: 26px;
 }
-.director-text .stanza {
+.director-text-inner .stanza {
   font-family: var(--font-body); font-weight: 700; font-size: 20px; color: #16223E;
   line-height: 1.6; margin: 36px 0; padding: 18px 24px; border-left: 3px solid var(--accent-3);
   background: rgba(22,34,62,0.04);
 }
-.director-text .stanza span { display: block; }
-.director-text .stanza span + span { margin-top: 18px; }
+.director-text-inner .stanza span { display: block; }
+.director-text-inner .stanza span + span { margin-top: 18px; }
 .director-sig { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(22,34,62,0.14); }
 .director-sig .sig-org { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #A39C8F; margin-bottom: 8px; }
 .director-sig .sig-name { display: block; font-family: var(--font-body); font-size: 21px; font-weight: 700; color: #16223E; }
@@ -373,9 +373,9 @@ section { padding: 120px 0; position: relative; }
   .director-photo-half { position: static; }
   .director-photo-half img { aspect-ratio: 4 / 5; max-width: 320px; margin: 0 auto; }
   .director-text-half { max-width: none; }
-  .director-text .quote { font-size: 34px; margin-bottom: 24px; }
-  .director-text .body { font-size: 15.5px; line-height: 1.9; }
-  .director-text .stanza { font-size: 17px; }
+  .director-text-inner .quote { font-size: 34px; margin-bottom: 24px; }
+  .director-text-inner .body { font-size: 15.5px; line-height: 1.9; }
+  .director-text-inner .stanza { font-size: 17px; }
 }
 
 /* ============ schedule ============ */
