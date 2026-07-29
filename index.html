@@ -404,6 +404,7 @@ section { padding: 120px 0; position: relative; }
 .gallery-grid .tile:hover img { transform: scale(1.05); }
 .gallery-grid .tile img.pos-right { object-position: right; }
 .gallery-grid .tile img.contain { object-fit: contain; }
+.gallery-grid .tile.ratio32 { aspect-ratio: 3 / 2; }
 @media (max-width: 760px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -431,27 +432,25 @@ section { padding: 120px 0; position: relative; }
 .admission {
   background: linear-gradient(135deg, var(--accent-2) 0%, #3ADCC0 100%);
   color: #fff;
-  border-radius: var(--radius-xl); padding: 48px 56px; margin: 0 auto; max-width: 880px;
+  border-radius: var(--radius-xl); padding: 72px 56px; margin: 0 32px;
   position: relative; overflow: hidden;
 }
 .blob { position: absolute; pointer-events: none; filter: blur(60px); opacity: 0.35; border-radius: 50%; z-index: 0; }
-.admission-inner { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.admission-label { font-family: var(--font-body); font-size: 13px; color: #fff; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; display: block; opacity: .9; }
-.admission h2 { color: #fff; font-size: clamp(20px, 2.4vw, 28px); max-width: 560px; margin-bottom: 16px; }
-.admission-body { color: rgba(255,255,255,0.85); max-width: 520px; line-height: 1.75; margin-bottom: 28px; font-size: 16px; }
+.admission-inner { position: relative; z-index: 2; }
+.admission-label { font-family: var(--font-body); font-size: 13px; color: #fff; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; opacity: .9; }
+.admission h2 { color: #fff; font-size: clamp(20px, 2.4vw, 28px); max-width: 640px; margin-bottom: 24px; }
+.admission-body { color: rgba(255,255,255,0.85); max-width: 560px; line-height: 1.8; margin-bottom: 40px; font-size: 16px; }
 .admission .btn-sun { background: #fff; color: var(--accent-3); }
 .admission .btn-ghost-white { color: #fff; border-color: rgba(255,255,255,0.55); }
 .admission .btn-ghost-white:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
-.admission-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; }
-.admission-btns .btn { height: 56px; max-width: 520px; width: 100%; box-sizing: border-box; }
-.admission-ages { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.25); width: 100%; }
-.admission-age { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,0.18); font-size: 13.5px; display: flex; gap: 10px; align-items: center; justify-content: center; color: #fff; width: 340px; max-width: 100%; box-sizing: border-box; }
+.admission-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.admission-ages { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.25); }
+.admission-age { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,0.18); font-size: 13.5px; display: flex; gap: 10px; align-items: center; color: #fff; }
 .admission-age strong { font-family: var(--font-display); font-weight: 700; color: #fff; }
 @media (max-width: 760px) {
-  .admission { padding: 32px 24px; margin: 0 16px; }
-  .admission-btns { flex-direction: column; align-items: center; }
-  .admission-btns .btn { justify-content: center; width: 90%; }
-  .admission-age { width: 90%; }
+  .admission { padding: 48px 28px; margin: 0 16px; }
+  .admission-btns { flex-direction: column; }
+  .admission-btns .btn { justify-content: center; }
 }
 
 /* ============ footer ============ */
@@ -737,9 +736,9 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       <div class="tile c"><img src="images/시설_북카페.png" alt="북카페" class="contain"></div>
       <div class="tile g"><img src="images/시설_세스코.png" alt="세스코 정기 방역 점검" class="contain"></div>
       <div class="tile h"><img src="images/시설_방역.png" alt="장난감 소독 및 방역 소독" class="contain"></div>
-      <div class="tile i"><img src="images/교실1.jpg" alt="교실1"></div>
-      <div class="tile j"><img src="images/교실2.png" alt="교실2"></div>
-      <div class="tile d"><img src="images/꿈별반.png" alt="교실3"></div>
+      <div class="tile i ratio32"><img src="images/교실1.jpg" alt="교실1"></div>
+      <div class="tile j ratio32"><img src="images/교실2.png" alt="교실2"></div>
+      <div class="tile d ratio32"><img src="images/꿈별반.png" alt="교실3"></div>
       <div class="tile b"><img src="images/시설_복도.png" alt="복도"></div>
       <div class="tile e"><img src="images/시설_주방.png" alt="주방"></div>
       <div class="tile f"><img src="images/시설_욕실.png" alt="화장실"></div>
