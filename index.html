@@ -371,6 +371,7 @@ section { padding: 120px 0; position: relative; }
 .director-sig { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(22,34,62,0.14); }
 .director-sig .sig-org { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #A39C8F; margin-bottom: 8px; }
 .director-sig .sig-name { display: block; font-family: var(--font-body); font-size: 21px; font-weight: 700; color: #16223E; }
+.director-more-btn { display: none; }
 .director-reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
 .director-text-half.director-reveal { transition-delay: .15s; }
 .director-reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -384,6 +385,26 @@ section { padding: 120px 0; position: relative; }
   .director-text-inner .quote { font-size: 34px; margin-bottom: 24px; }
   .director-text-inner .body { font-size: 15.5px; line-height: 1.9; }
   .director-text-inner .stanza { font-size: 17px; }
+  .director-text-inner .body { margin-bottom: 20px; }
+  .director-collapse {
+    max-height: 260px; overflow: hidden; position: relative;
+  }
+  .director-collapse::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 72px;
+    background: linear-gradient(to bottom, rgba(251,243,230,0) 0%, #FBF3E6 90%);
+    pointer-events: none;
+  }
+  .director-collapse.is-expanded { max-height: none; }
+  .director-collapse.is-expanded::after { display: none; }
+  .director-more-btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%; margin: 4px 0 32px; padding: 12px; border: none;
+    background: rgba(22,34,62,0.06); border-radius: 999px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; color: #16223E;
+    cursor: pointer;
+  }
+  .director-more-btn .arrow { transition: transform .3s ease; }
+  .director-more-btn.is-expanded .arrow { transform: rotate(180deg); }
 }
 
 /* ============ schedule ============ */
@@ -676,6 +697,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     <div class="director-text-half director-reveal"><div class="director-text-inner">
       <span class="director-label">DIRECTOR'S MESSAGE</span>
       <p class="quote"><span class="line-navy">아이의 속도를</span><span class="line-brown">존중하는 교육</span></p>
+      <div class="director-collapse" id="directorCollapse">
       <p class="body">
         어린이집을 선택할 때 거리와 시설, 프로그램도 중요하지만, 그보다 더 중요한 것은
         '우리 아이를 어떤 시선으로 바라보는 곳인가'라고 생각합니다.
@@ -705,6 +727,8 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         라바어린이집은 앞으로도 아이 한 명, 한 명의 속도를 존중하며
         부모님과 함께 행복한 하루를 만들어가겠습니다.
       </p>
+      </div>
+      <button type="button" class="director-more-btn" id="directorMoreBtn">이어서 읽기 <span class="arrow">↓</span></button>
       <div class="director-sig">
         <span class="sig-org">공공형 라바어린이집</span>
         <span class="sig-name">원장 권영인</span>
@@ -910,6 +934,20 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       menu.classList.remove('open');
     }
   });
+
+  /* 원장님 인사말 모바일 이어서 읽기 */
+  const directorCollapse = document.getElementById('directorCollapse');
+  const directorMoreBtn = document.getElementById('directorMoreBtn');
+  if (directorCollapse && directorMoreBtn) {
+    directorMoreBtn.addEventListener('click', () => {
+      const expanded = directorCollapse.classList.toggle('is-expanded');
+      directorMoreBtn.classList.toggle('is-expanded', expanded);
+      directorMoreBtn.firstChild.textContent = expanded ? '접기 ' : '이어서 읽기 ';
+      if (!expanded) {
+        directorCollapse.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      }
+    });
+  }
 
   /* 배경음악: 자동 재생 + 반복, 화면에 노출 없음 */
   const bgm = document.getElementById('bgm');
