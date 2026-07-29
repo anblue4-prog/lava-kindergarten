@@ -98,15 +98,15 @@ section { padding: 120px 0; position: relative; }
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 10px;
   font-family: var(--font-display); font-weight: 700; font-size: 20px; white-space: nowrap;
   transition: color .2s;
 }
 .brand-mark {
-  width: 38px; height: 38px; border-radius: 50%;
+  width: 34px; height: 34px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   display: grid; place-items: center;
-  color: #fff; font-family: var(--font-accent); font-size: 18px;
+  color: #fff; font-family: var(--font-accent); font-size: 16px;
   box-shadow: var(--shadow-sm); flex-shrink: 0;
 }
 /* hero 위에서는 흰색으로 */
@@ -433,6 +433,12 @@ section { padding: 120px 0; position: relative; }
 .info-row .val { color: var(--ink-soft); }
 .location-btns { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
 .map-card { border-radius: var(--radius-lg); overflow: hidden; min-height: 420px; position: relative; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.map-label {
+  position: absolute; top: 14px; right: 14px; z-index: 5;
+  background: var(--ink); color: #fff; font-family: var(--font-display);
+  font-weight: 700; font-size: 14px; padding: 9px 16px; border-radius: 999px;
+  box-shadow: var(--shadow); pointer-events: none;
+}
 .map-card iframe { width: 100%; height: 100%; border: 0; display: block; position: absolute; inset: 0; }
 @media (max-width: 860px) { .location-grid { grid-template-columns: 1fr; } .map-card { min-height: 320px; } }
 
@@ -797,6 +803,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         </div>
       </div>
       <div class="map-card">
+        <div class="map-label">📍 라바어린이집</div>
         <iframe
           title="라바어린이집 위치"
           src="https://maps.google.com/maps?q=%EA%B2%BD%EB%82%A8+%EC%96%91%EC%82%B0%EC%8B%9C+%EB%AC%BC%EA%B8%88%EC%9D%8D+%EB%AC%BC%EA%B8%88%EB%A1%9C75+%EC%9D%B4%EC%A7%80%EB%8D%94%EC%9B%902%EC%B0%A8&t=&z=16&ie=UTF8&iwloc=&output=embed"
