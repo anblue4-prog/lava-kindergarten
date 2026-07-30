@@ -519,32 +519,50 @@ h2.section-title,
 
 /* ============ location ============ */
 .location { background: var(--bg-soft); }
-.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.location-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: stretch; }
+.map-wrap { display: flex; }
+.map-card {
+  width: 100%; height: 500px;
+  border-radius: 24px; overflow: hidden; position: relative;
+  background: var(--card); box-shadow: var(--shadow-lg);
+}
+#leaflet-map { width: 100%; height: 100%; }
+.lava-leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 16px; box-shadow: 0 10px 30px rgba(58,40,0,0.18);
+  padding: 4px; border: none;
+}
+.lava-leaflet-popup .leaflet-popup-content { margin: 14px 18px; }
+.lava-leaflet-popup .leaflet-popup-tip { box-shadow: 0 6px 14px rgba(58,40,0,0.1); }
+.lava-popup { font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--ink); white-space: nowrap; }
+.lava-popup strong { color: var(--accent-3); font-size: 14.5px; }
+.leaflet-control-attribution { font-size: 10px; }
 .location-info {
   display: flex; flex-direction: column; background: var(--card);
   border-radius: 24px; padding: 44px 40px; box-shadow: var(--shadow-lg);
-  height: 100%; box-sizing: border-box; justify-content: center;
+  box-sizing: border-box; justify-content: center;
 }
-.location-info .addr-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--accent-3); letter-spacing: 0.02em; margin-bottom: 8px; }
-.location-info .addr { font-family: var(--font-display); font-size: 22px; line-height: 1.5; margin-bottom: 14px; }
-.location-info .sub { color: var(--ink-soft); font-size: 14.5px; line-height: 1.8; }
-.info-rows { margin-top: 28px; border-top: 1px solid var(--line); }
-.info-row { display: grid; grid-template-columns: 120px 1fr; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
-.info-row strong { font-weight: 600; color: var(--ink); }
-.info-row .val { color: var(--ink-soft); }
-.location-btns { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
-.map-wrap { display: flex; align-items: center; justify-content: center; height: 100%; }
-.map-card {
-  flex: none; width: 100%; max-width: 300px; aspect-ratio: 4 / 5; height: auto;
-  border-radius: 24px; overflow: hidden; position: relative;
-  background: var(--card); box-shadow: var(--shadow-lg); border: 6px solid var(--card);
+.loc-field { padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+.loc-field:first-child { padding-top: 0; }
+.loc-field:last-of-type { border-bottom: none; }
+.loc-field-label { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--accent-3); letter-spacing: 0.01em; }
+.loc-field-val { font-family: var(--font-display); font-size: 16.5px; line-height: 1.6; color: var(--ink); }
+.location-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
+.loc-btn {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  height: 56px; padding: 0 10px; border-radius: 14px;
+  font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
+  box-sizing: border-box; transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-#leaflet-map { width: 100%; height: 100%; }
+.loc-btn:hover { transform: translateY(-2px); }
+.loc-btn.call { background: var(--bg-deeper); color: var(--accent-3); }
+.loc-btn.kakao { background: #FEE500; color: #3C1E1E; }
+.loc-btn.naver { background: var(--ink); color: #fff; }
 @media (max-width: 860px) {
-  .location-grid { grid-template-columns: 1fr; gap: 32px; }
-  .map-wrap { order: -1; }
+  .location-grid { grid-template-columns: 1fr; gap: 24px; }
+  .map-card { height: 320px; }
   .location-info { padding: 32px 28px; }
-  .map-card { max-width: 260px; }
+  .location-btns { grid-template-columns: 1fr; }
 }
 
 /* ============ admission ============ */
@@ -933,29 +951,32 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       </div>
     </div>
     <div class="location-grid">
-      <div class="location-info">
-        <div class="addr-name">라바어린이집</div>
-        <div class="addr">경남 양산시 물금읍 물금로 75<br>이지더원2차그랜드 216동 104호</div>
-        <div class="sub">이지더원2차 단지 내에 위치해 있어요.</div>
-        <div class="info-rows">
-          <div class="info-row"><strong>전화</strong><span class="val">055-912-7710</span></div>
-          <div class="info-row"><strong>운영시간</strong><span class="val">07:30 – 19:30</span></div>
-          <div class="info-row"><strong>보육대상</strong><span class="val">만 0세 ~ 만 2세</span></div>
-        </div>
-        <div class="location-btns">
-          <a href="tel:055-912-7710" class="btn btn-ghost">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.65 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.21a2 2 0 0 1 2.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0 1 22 16.92z"/></svg>
-            055-912-7710
-          </a>
-          <a href="https://open.kakao.com/o/sS4eqmpf" target="_blank" rel="noopener" class="btn btn-kakao">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.73 1.75 5.13 4.39 6.55-.17.62-.63 2.31-.72 2.67 0 0-.01.05.02.08s.08.01.08.01c.28-.04 3.22-2.1 3.74-2.47.81.12 1.65.18 2.49.18 5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
-            카카오톡 상담
-          </a>
-        </div>
-      </div>
       <div class="map-wrap">
         <div class="map-card">
           <div id="leaflet-map"></div>
+        </div>
+      </div>
+      <div class="location-info">
+        <div class="loc-field">
+          <span class="loc-field-label">📍 주소</span>
+          <span class="loc-field-val">경남 양산시 물금읍 물금로75<br>이지더원2차그랜드 216동 104호</span>
+        </div>
+        <div class="loc-field">
+          <span class="loc-field-label">☎ 전화</span>
+          <span class="loc-field-val">055-912-7710</span>
+        </div>
+        <div class="loc-field">
+          <span class="loc-field-label">🕘 운영시간</span>
+          <span class="loc-field-val">07:30 ~ 19:30</span>
+        </div>
+        <div class="loc-field">
+          <span class="loc-field-label">👶 보육대상</span>
+          <span class="loc-field-val">만 0세 ~ 만 2세</span>
+        </div>
+        <div class="location-btns">
+          <a href="tel:055-912-7710" class="loc-btn call">📞 전화하기</a>
+          <a href="https://open.kakao.com/o/sS4eqmpf" target="_blank" rel="noopener" class="loc-btn kakao">💬 카카오톡 상담</a>
+          <a href="https://map.naver.com/p/search/%EB%9D%BC%EB%B0%94%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91%20%EA%B2%BD%EB%82%A8%20%EC%96%91%EC%82%B0%EC%8B%9C%20%EB%AC%BC%EA%B8%88%EC%9D%8D%20%EB%AC%BC%EA%B8%88%EB%A1%9C%2075" target="_blank" rel="noopener" class="loc-btn naver">🗺️ 네이버지도 길찾기</a>
         </div>
       </div>
     </div>
@@ -1045,13 +1066,16 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     const mapEl = document.getElementById('leaflet-map');
     if (!mapEl || typeof L === 'undefined') return;
     const lava = [35.307439, 128.9872001];
-    const map = L.map('leaflet-map', { scrollWheelZoom: false }).setView(lava, 17);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const map = L.map('leaflet-map', { scrollWheelZoom: false, zoomControl: true }).setView(lava, 16);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
     L.marker(lava).addTo(map)
-      .bindPopup('📍 <strong>라바어린이집</strong><br>경남 양산시 물금읍 물금로 75<br>이지더원2차그랜드 216동 104호')
+      .bindPopup(
+        '<div class="lava-popup">📍 <strong>라바어린이집</strong><br>경남 양산시 물금읍 물금로75<br>이지더원2차그랜드 216동 104호</div>',
+        { closeButton: false, autoClose: false, closeOnClick: false, className: 'lava-leaflet-popup' }
+      )
       .openPopup();
   })();
 
