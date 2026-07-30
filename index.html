@@ -462,26 +462,14 @@ section { padding: 120px 0; position: relative; }
 .info-row strong { font-weight: 600; color: var(--ink); }
 .info-row .val { color: var(--ink-soft); }
 .location-btns { display: flex; gap: 10px; margin-top: auto; padding-top: 28px; flex-wrap: wrap; }
-.map-wrap { display: flex; flex-direction: column; }
-.map-btns { display: flex; gap: 10px; margin-bottom: 14px; }
-.map-btn {
-  flex: 1 1 0; min-width: 0; height: 50px; display: flex; align-items: center; justify-content: center;
-  gap: 6px; border-radius: 999px; font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  transition: transform .2s var(--ease), filter .2s var(--ease);
-}
-.map-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
-.map-btn.call { background: var(--ink); color: #fff; }
-.map-btn.naver { background: #03C75A; color: #fff; }
-.map-btn.kakao-map { background: #FEE500; color: #3C1E1E; }
-.map-card { border-radius: 24px; overflow: hidden; height: 420px; position: relative; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-lg); margin: 0; }
-.map-wrap, .location-info { margin: 0; padding: 0; transform: none; }
+.map-wrap { display: flex; flex-direction: column; margin: 0; padding: 0; }
+.map-card { flex: 1; border-radius: 24px; overflow: hidden; min-height: 420px; position: relative; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-lg); margin: 0; }
+.location-info { margin: 0; padding: 0; }
 #leaflet-map { width: 100%; height: 100%; }
 @media (max-width: 860px) {
   .location-grid { grid-template-columns: 1fr; }
   .map-wrap { order: -1; margin-bottom: 32px; }
   .map-card { height: 320px; }
-  .map-btn { font-size: 12.5px; padding: 0 6px; }
 }
 
 /* ============ admission ============ */
@@ -849,11 +837,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         </div>
       </div>
       <div class="map-wrap">
-        <div class="map-btns">
-          <a href="tel:0559127710" class="map-btn call">☎ 전화상담</a>
-          <a href="https://map.naver.com/p/search/%EB%9D%BC%EB%B0%94%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91%20%EA%B2%BD%EB%82%A8%20%EC%96%91%EC%82%B0%EC%8B%9C%20%EB%AC%BC%EA%B8%88%EC%9D%8D%20%EB%AC%BC%EA%B8%88%EB%A1%9C%2075" target="_blank" rel="noopener" class="map-btn naver">네이버지도</a>
-          <a href="https://map.kakao.com/link/to/%EB%9D%BC%EB%B0%94%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91,35.307439,128.9872001" target="_blank" rel="noopener" class="map-btn kakao-map">카카오맵</a>
-        </div>
         <div class="map-card">
           <div id="leaflet-map"></div>
         </div>
