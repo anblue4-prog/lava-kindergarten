@@ -249,7 +249,6 @@ section { padding: 120px 0; position: relative; }
 .director-label,
 .admission-label,
 .schedule-intro-label,
-.badge-pill,
 .location-label {
   display: inline-flex; align-items: center; gap: 6px;
   height: 38px; padding: 0 20px; border-radius: 999px;
@@ -263,8 +262,7 @@ section { padding: 120px 0; position: relative; }
 h2.section-title,
 .sec-head h2,
 .schedule-intro h2,
-.admission h2,
-.info-card-head h2 {
+.admission h2 {
   font-family: var(--font-body); font-weight: 800; letter-spacing: -0.02em;
   color: var(--ink); line-height: 1.3;
 }
@@ -457,26 +455,16 @@ h2.section-title,
   .schedule-desc { grid-column: 1 / -1; margin-top: 2px; }
 }
 
-/* ============ meals & safety info card sections ============ */
-.wide-container { max-width: 1160px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
-.info-card-section { padding-top: 100px; padding-bottom: 20px; }
-.safety-section { padding-top: 20px; padding-bottom: 100px; }
-.info-card-head { text-align: left; }
-.info-card-head h2, .info-card-head .cert-line, .info-card-head .info-card-sub { max-width: 720px; }
-.badge-pill.meals { background: #DFF7EF; color: #148563; }
-.badge-pill.safety { background: #DFEEFF; color: #1D5FA8; }
-.info-card-head h2 {
-  font-family: var(--font-body); font-weight: 800; font-size: clamp(28px, 3.4vw, 40px);
-  margin-bottom: 18px; text-wrap: balance;
+/* ============ meals & safety (unified with schedule-wrap template) ============ */
+.schedule-intro-label.meals { background: #DFF7EF; color: #148563; }
+.schedule-intro-label.safety { background: #DFEEFF; color: #1D5FA8; }
+.schedule-intro .cert-line {
+  font-family: var(--font-body); font-weight: 600; font-size: 15px; color: var(--accent-3);
+  margin: -4px 0 4px; max-width: none;
 }
-.cert-line {
-  font-family: var(--font-body); font-weight: 600; font-size: 16px; color: var(--accent-3);
-  margin: 0 0 16px;
-}
-.info-card-sub { font-family: var(--font-body); font-weight: 500; font-size: 16px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .info-card {
-  max-width: 900px; margin: 40px 0 0; border-radius: var(--radius-lg); padding: 40px;
-  box-shadow: var(--shadow-lg); box-sizing: border-box;
+  border-radius: var(--radius-lg); padding: 40px;
+  box-shadow: var(--shadow); box-sizing: border-box;
 }
 .info-card.meals { background: linear-gradient(180deg, #FFFFFF 0%, #F4FFFB 100%); }
 .info-card.safety { background: linear-gradient(180deg, #FFFFFF 0%, #F3F9FF 100%); }
@@ -495,10 +483,7 @@ h2.section-title,
 }
 .info-check-note { font-size: 15px; color: var(--ink-mute); }
 @media (max-width: 760px) {
-  .wide-container { padding: 0 20px; }
-  .info-card-section { padding-top: 64px; padding-bottom: 12px; }
-  .safety-section { padding-top: 12px; padding-bottom: 64px; }
-  .info-card { padding: 24px; width: 100%; margin-top: 32px; }
+  .info-card { padding: 24px; }
   .info-check-list { gap: 20px; }
   .info-check-item p { font-size: 16px; line-height: 1.75; }
 }
@@ -573,7 +558,7 @@ h2.section-title,
 .admission {
   background: linear-gradient(135deg, var(--accent-2) 0%, #3ADCC0 100%);
   color: #fff;
-  border-radius: var(--radius-xl); padding: 72px 56px; margin: 0 32px;
+  border-radius: var(--radius-xl); padding: 72px 56px;
   position: relative; overflow: hidden;
 }
 .blob { position: absolute; pointer-events: none; filter: blur(60px); opacity: 0.35; border-radius: 50%; z-index: 0; }
@@ -588,7 +573,7 @@ h2.section-title,
 .admission-age { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,0.18); font-size: 13.5px; display: flex; gap: 10px; align-items: center; color: #fff; }
 .admission-age strong { font-family: var(--font-display); font-weight: 700; color: #fff; }
 @media (max-width: 760px) {
-  .admission { padding: 48px 28px; margin: 0 16px; }
+  .admission { padding: 48px 28px; }
   .admission-btns { flex-direction: column; }
   .admission-btns .btn { justify-content: center; }
 }
@@ -904,41 +889,45 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 </section>
 
 <!-- MEALS & NUTRITION -->
-<section class="info-card-section">
-  <div class="wide-container info-card-head">
-    <span class="badge-pill meals">🍽️ 건강한 식생활</span>
-    <h2>급식 및 영양관리</h2>
-    <p class="info-card-sub">매일 원내에서 직접 조리하는 건강한 식단으로<br>아이들의 성장과 건강을 함께 지켜갑니다.</p>
-  </div>
-  <div class="wide-container">
-    <div class="info-card meals">
-      <div class="info-check-list">
-        <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>모든 음식을 원내에서 직접 조리해요.<br><span class="info-check-note">(인스턴트 없이 자연주의 식단)</span></p></div>
-        <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>오전·오후 간식 각 1회 + 점심 1회, 주 2회 이상 제철 과일·채소를 제공합니다.</p></div>
-        <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>급·간식 식재료를 자연드림에서 납품받아요.</p></div>
-        <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>매월 식단표를 가정으로 안내해 드려요.</p></div>
-        <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>식품알레르기 사전조사 후 대체식·제거식을 제공하며, 응급상황 대응체계를 갖추고 있습니다.</p></div>
+<section id="meals">
+  <div class="container">
+    <div class="schedule-wrap">
+      <div class="schedule-intro">
+        <span class="schedule-intro-label meals">Healthy Meals</span>
+        <h2>급식 및 영양관리</h2>
+        <p>건강한 식재료와 균형 잡힌 식단으로 아이들의 건강한 성장을 지원합니다.</p>
+      </div>
+      <div class="info-card meals">
+        <div class="info-check-list">
+          <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>모든 음식을 원내에서 직접 조리해요.<br><span class="info-check-note">(인스턴트 없이 자연주의 식단)</span></p></div>
+          <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>오전·오후 간식 각 1회 + 점심 1회, 주 2회 이상 제철 과일·채소를 제공합니다.</p></div>
+          <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>급·간식 식재료를 자연드림에서 납품받아요.</p></div>
+          <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>매월 식단표를 가정으로 안내해 드려요.</p></div>
+          <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>식품알레르기 사전조사 후 대체식·제거식을 제공하며, 응급상황 대응체계를 갖추고 있습니다.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SAFETY & HEALTH -->
-<section class="info-card-section safety-section">
-  <div class="wide-container info-card-head">
-    <span class="badge-pill safety">🛡️ 안전한 보육환경</span>
-    <h2>안전 및 보건관리</h2>
-    <p class="cert-line">2018년 「어린이활동공간 환경안심인증제」 선정</p>
-    <p class="info-card-sub">"건강, 영양, 안전"을 위한 라바어린이집의<br>꼼꼼하고 체계적인 안전관리 시스템입니다.</p>
-  </div>
-  <div class="wide-container">
-    <div class="info-card safety">
-      <div class="info-check-list">
-        <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 보육실 CCTV 설치, 전자출결시스템으로 등·하원 시 보호자 휴대폰에 자동 알림</p></div>
-        <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 원아 상해·화재·배상보험 가입</p></div>
-        <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>교통안전·성폭력예방·재난안전 등 매월 안전교육 실시</p></div>
-        <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>등원 시 건강체크, 발열 38.5도 이상 시 안정 후 귀가 조치 등 체계적인 건강관리 절차 운영</p></div>
-        <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>소방서·시청 등과 연결된 비상연락체계를 운영합니다.</p></div>
+<section id="safety">
+  <div class="container">
+    <div class="schedule-wrap">
+      <div class="schedule-intro">
+        <span class="schedule-intro-label safety">Safety &amp; Health</span>
+        <h2>안전 및 보건관리</h2>
+        <div class="cert-line">2018년 「어린이활동공간 환경안심인증제」 선정</div>
+        <p>안전한 환경과 체계적인 위생 관리로 아이들이 안심하고 생활할 수 있도록 운영합니다.</p>
+      </div>
+      <div class="info-card safety">
+        <div class="info-check-list">
+          <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 보육실 CCTV 설치, 전자출결시스템으로 등·하원 시 보호자 휴대폰에 자동 알림</p></div>
+          <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 원아 상해·화재·배상보험 가입</p></div>
+          <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>교통안전·성폭력예방·재난안전 등 매월 안전교육 실시</p></div>
+          <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>등원 시 건강체크, 발열 38.5도 이상 시 안정 후 귀가 조치 등 체계적인 건강관리 절차 운영</p></div>
+          <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>소방서·시청 등과 연결된 비상연락체계를 운영합니다.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -988,6 +977,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 
 <!-- ADMISSION -->
 <section class="admission-section">
+  <div class="container">
   <div class="admission">
     <div class="blob" style="width:340px;height:340px;background:#fff;top:-100px;right:-80px;"></div>
     <div class="blob" style="width:280px;height:280px;background:#B9FCEA;bottom:-80px;left:40px;"></div>
@@ -1011,6 +1001,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         <div class="admission-age"><strong>만 2세</strong><span>영아 · 애착과 놀이</span></div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
