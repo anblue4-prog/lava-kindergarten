@@ -455,19 +455,20 @@ h2.section-title,
   .schedule-desc { grid-column: 1 / -1; margin-top: 2px; }
 }
 
-/* ============ meals & safety (unified with schedule-wrap template) ============ */
-.schedule-intro-label.meals { background: #DFF7EF; color: #148563; }
-.schedule-intro-label.safety { background: #DFEEFF; color: #1D5FA8; }
-.schedule-intro .cert-line {
-  font-family: var(--font-body); font-weight: 600; font-size: 15px; color: var(--accent-3);
-  margin: -4px 0 4px; max-width: none;
-}
+/* ============ meals & safety (merged, unified with Daily Routine template) ============ */
+.dual-head { margin-bottom: 56px; }
+.dual-head p { max-width: 620px; }
+.dual-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
 .info-card {
   border-radius: var(--radius-lg); padding: 40px;
   box-shadow: var(--shadow); box-sizing: border-box;
 }
 .info-card.meals { background: linear-gradient(180deg, #FFFFFF 0%, #F4FFFB 100%); }
 .info-card.safety { background: linear-gradient(180deg, #FFFFFF 0%, #F3F9FF 100%); }
+.card-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.card-title-icon { font-size: 24px; line-height: 1; }
+.card-title-row h3 { font-family: var(--font-body); font-weight: 800; font-size: 21px; color: var(--ink); letter-spacing: -0.01em; }
+.card-sub-line { font-family: var(--font-body); font-weight: 500; font-size: 13.5px; color: var(--ink-mute); margin: 0 0 24px; }
 .info-check-list { display: flex; flex-direction: column; gap: 22px; }
 .info-check-item { display: flex; align-items: flex-start; gap: 14px; }
 .info-check-icon {
@@ -483,6 +484,8 @@ h2.section-title,
 }
 .info-check-note { font-size: 15px; color: var(--ink-mute); }
 @media (max-width: 760px) {
+  .dual-head { margin-bottom: 36px; }
+  .dual-card-grid { grid-template-columns: 1fr; gap: 24px; }
   .info-card { padding: 24px; }
   .info-check-list { gap: 20px; }
   .info-check-item p { font-size: 16px; line-height: 1.75; }
@@ -888,16 +891,18 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </div>
 </section>
 
-<!-- MEALS & NUTRITION -->
-<section id="meals">
+<!-- MEALS & SAFETY (merged) -->
+<section id="meals-safety">
   <div class="container">
-    <div class="schedule-wrap">
-      <div class="schedule-intro">
-        <span class="schedule-intro-label meals">Healthy Meals</span>
-        <h2>급식 및 영양관리</h2>
-        <p>건강한 식재료와 균형 잡힌 식단으로 아이들의 건강한 성장을 지원합니다.</p>
-      </div>
+    <div class="schedule-intro dual-head">
+      <span class="schedule-intro-label">Safety &amp; Health</span>
+      <h2>건강한 성장,<br>안전한 환경</h2>
+      <p>건강한 먹거리와 체계적인 안전관리로 아이들의 하루를 든든하게 지켜갑니다.</p>
+    </div>
+    <div class="dual-card-grid">
       <div class="info-card meals">
+        <div class="card-title-row"><span class="card-title-icon">🍽️</span><h3>급식 및 영양관리</h3></div>
+        <p class="card-sub-line">자연드림 식재료로 짓는 건강한 한 끼</p>
         <div class="info-check-list">
           <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>모든 음식을 원내에서 직접 조리해요.<br><span class="info-check-note">(인스턴트 없이 자연주의 식단)</span></p></div>
           <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>오전·오후 간식 각 1회 + 점심 1회, 주 2회 이상 제철 과일·채소를 제공합니다.</p></div>
@@ -906,21 +911,9 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
           <div class="info-check-item"><span class="info-check-icon meals">✓</span><p>식품알레르기 사전조사 후 대체식·제거식을 제공하며, 응급상황 대응체계를 갖추고 있습니다.</p></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SAFETY & HEALTH -->
-<section id="safety">
-  <div class="container">
-    <div class="schedule-wrap">
-      <div class="schedule-intro">
-        <span class="schedule-intro-label safety">Safety &amp; Health</span>
-        <h2>안전 및 보건관리</h2>
-        <div class="cert-line">2018년 「어린이활동공간 환경안심인증제」 선정</div>
-        <p>안전한 환경과 체계적인 위생 관리로 아이들이 안심하고 생활할 수 있도록 운영합니다.</p>
-      </div>
       <div class="info-card safety">
+        <div class="card-title-row"><span class="card-title-icon">🛡️</span><h3>안전 및 보건관리</h3></div>
+        <p class="card-sub-line">2018년 「어린이활동공간 환경안심인증제」 선정</p>
         <div class="info-check-list">
           <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 보육실 CCTV 설치, 전자출결시스템으로 등·하원 시 보호자 휴대폰에 자동 알림</p></div>
           <div class="info-check-item"><span class="info-check-icon safety">✓</span><p>전 원아 상해·화재·배상보험 가입</p></div>
