@@ -550,7 +550,7 @@ h2.section-title,
   font-family: var(--font-body); font-weight: 500; font-size: 16px; color: #666;
   line-height: 1.6; max-width: 640px; margin: 0 0 40px;
 }
-.contact-btns { display: flex; justify-content: flex-start; gap: 24px; margin-bottom: 44px; }
+.contact-btns { display: flex; justify-content: flex-start; gap: 24px; }
 .c-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   height: 64px; padding: 0 32px; border-radius: 999px;
@@ -561,17 +561,12 @@ h2.section-title,
 .c-btn.kakao { background: #FEE500; }
 .c-btn.insta { background: #FDE1EC; border: 1px solid var(--line); }
 .c-btn.call { background: var(--bg-deeper); }
-.contact-info-row { display: flex; justify-content: flex-start; gap: 56px; flex-wrap: wrap; }
-.ci-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.ci-label { font-family: var(--font-body); font-size: 13px; color: var(--ink-mute); }
-.ci-value { font-family: var(--font-body); font-weight: 700; font-size: 15px; color: var(--ink); }
 @media (max-width: 760px) {
   .contact-section { padding: 48px 20px 88px; }
   .contact-card { padding: 56px 28px; border-radius: 24px; }
   .contact-card h2 { white-space: normal; }
   .contact-btns { flex-direction: column; }
   .c-btn { width: 100%; }
-  .contact-info-row { gap: 24px; }
 }
 
 /* ============ footer ============ */
@@ -984,11 +979,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       <a href="https://open.kakao.com/o/sS4eqmpf" target="_blank" rel="noopener" class="c-btn kakao">💬 카카오톡 상담</a>
       <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="c-btn insta">📷 인스타그램</a>
       <a href="tel:055-912-7710" class="c-btn call">📞 전화하기</a>
-    </div>
-    <div class="contact-info-row">
-      <div class="ci-item"><span class="ci-label">대표전화</span><span class="ci-value">055-912-7710</span></div>
-      <div class="ci-item"><span class="ci-label">카카오톡 상담</span><span class="ci-value">라바어린이집</span></div>
-      <div class="ci-item"><span class="ci-label">인스타그램</span><span class="ci-value">@lava_kindergarten</span></div>
     </div>
   </div>
 </section>
