@@ -491,7 +491,7 @@ h2.section-title,
   align-items: stretch;
 }
 .location-info-col { grid-area: info; display: flex; flex-direction: column; gap: 16px; }
-.location-map-btns { grid-area: btns; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.location-map-btns { grid-area: btns; display: flex; gap: 12px; flex-wrap: wrap; }
 .map-wrap { grid-area: map; display: flex; }
 .map-card {
   width: 100%; height: 560px;
@@ -529,10 +529,12 @@ h2.section-title,
 .loc-mini-body { flex: 1; min-width: 0; }
 .loc-mini-label { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
 .loc-mini-value { font-family: var(--font-body); font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+.loc-mini-link { font-family: var(--font-body); font-weight: 700; font-size: 14.5px; color: #1FAE7E; transition: color .2s; }
+.loc-mini-link:hover { color: #148563; }
 .loc-map-btn {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  height: 56px; border-radius: 999px;
-  font-family: var(--font-body); font-weight: 600; font-size: 14.5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding: 0 22px; border-radius: 999px;
+  font-family: var(--font-body); font-weight: 600; font-size: 14px;
   box-sizing: border-box; transition: transform .25s var(--ease);
 }
 .loc-map-btn:hover { transform: translateY(-2px); }
@@ -961,7 +963,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
           <span class="loc-mini-icon">💬</span>
           <div class="loc-mini-body">
             <div class="loc-mini-label">상담문의</div>
-            <div class="loc-mini-value">카카오톡 상담 가능합니다.</div>
+            <a href="https://open.kakao.com/o/sS4eqmpf" target="_blank" rel="noopener" class="loc-mini-link">카카오톡 오픈채팅으로 문의하기 →</a>
           </div>
         </div>
       </div>
@@ -1048,7 +1050,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     if (!mapEl || typeof L === 'undefined') return;
     const lava = [35.313209, 128.9916449];
     const map = L.map('leaflet-map', { scrollWheelZoom: false, zoomControl: true }).setView(lava, 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
