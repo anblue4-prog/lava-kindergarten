@@ -19,7 +19,6 @@
 <meta name="twitter:image" content="https://anblue4-prog.github.io/lava-kindergarten/images/og-image.png" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
 <style>
 /* ============ 라바 노랑·민트 팔레트 ============ */
@@ -498,25 +497,7 @@ h2.section-title,
   border-radius: 24px; overflow: hidden; position: relative;
   background: var(--card); box-shadow: var(--shadow-lg);
 }
-#leaflet-map { width: 100%; height: 100%; }
-.lava-leaflet-popup .leaflet-popup-content-wrapper {
-  border-radius: 16px; box-shadow: 0 10px 30px rgba(58,40,0,0.18);
-  padding: 4px; border: none;
-}
-.lava-leaflet-popup .leaflet-popup-content { margin: 14px 18px; }
-.lava-leaflet-popup .leaflet-popup-tip { box-shadow: 0 6px 14px rgba(58,40,0,0.1); }
-.lava-popup { font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--ink); white-space: nowrap; }
-.lava-popup-head { display: flex; align-items: center; gap: 14px; justify-content: space-between; margin-bottom: 4px; }
-.lava-popup strong { color: var(--ink); font-size: 14.5px; }
-.lava-popup-dir {
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--accent-2); color: #fff; font-size: 12px;
-  box-shadow: 0 2px 6px rgba(47,163,199,0.4);
-}
-.lava-popup-addr { color: var(--ink-soft); }
-.lava-pin { background: transparent; border: none; }
-.leaflet-control-attribution { font-size: 10px; }
+#gmap-frame { width: 100%; height: 100%; border: 0; display: block; }
 .loc-mini-card {
   background: var(--card); border-radius: 24px; box-shadow: var(--shadow);
   padding: 24px 26px; display: flex; align-items: flex-start; gap: 16px; box-sizing: border-box;
@@ -969,7 +950,9 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
       </div>
       <div class="map-wrap">
         <div class="map-card">
-          <div id="leaflet-map"></div>
+          <iframe id="gmap-frame"
+            src="https://maps.google.com/maps?q=%EA%B2%BD%EB%82%A8+%EC%96%91%EC%82%B0%EC%8B%9C+%EB%AC%BC%EA%B8%88%EC%9D%8D+%EB%AC%BC%EA%B8%88%EB%A1%9C75+%EC%9D%B4%EC%A7%80%EB%8D%94%EC%9B%902%EC%B0%A8&z=16&output=embed"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="라바어린이집 위치 지도"></iframe>
         </div>
       </div>
       <div class="location-map-btns">
@@ -1042,37 +1025,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </a>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-  /* 오시는 길 지도 (Leaflet + OpenStreetMap) */
-  (function () {
-    const mapEl = document.getElementById('leaflet-map');
-    if (!mapEl || typeof L === 'undefined') return;
-    const lava = [35.313209, 128.9916449];
-    const map = L.map('leaflet-map', { scrollWheelZoom: false, zoomControl: true }).setView(lava, 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
-    }).addTo(map);
-    const lavaPin = L.divIcon({
-      className: 'lava-pin',
-      html: '<svg width="34" height="46" viewBox="0 0 34 46" xmlns="http://www.w3.org/2000/svg"><path d="M17 0C7.6 0 0 7.6 0 17c0 12 17 29 17 29s17-17 17-29C34 7.6 26.4 0 17 0z" fill="#FF5B6E"/><circle cx="17" cy="17" r="7" fill="#fff"/></svg>',
-      iconSize: [34, 46], iconAnchor: [17, 46], popupAnchor: [0, -40]
-    });
-    L.marker(lava, { icon: lavaPin }).addTo(map)
-      .bindPopup(
-        '<div class="lava-popup">' +
-          '<div class="lava-popup-head">' +
-            '<strong>📍 라바어린이집</strong>' +
-            '<a href="https://map.kakao.com/link/to/%EB%9D%BC%EB%B0%94%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91,35.313209,128.9916449" target="_blank" rel="noopener" class="lava-popup-dir" title="길찾기">➤</a>' +
-          '</div>' +
-          '<div class="lava-popup-addr">경남 양산시 물금읍 물금로75<br>이지더원2차그랜드 216동 104호</div>' +
-        '</div>',
-        { closeButton: false, autoClose: false, closeOnClick: false, className: 'lava-leaflet-popup' }
-      )
-      .openPopup();
-  })();
-
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
