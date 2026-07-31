@@ -19,6 +19,7 @@
 <meta name="twitter:image" content="https://anblue4-prog.github.io/lava-kindergarten/images/og-image.png" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="chatbot.css">
 
 <style>
 /* ============ 라바 노랑·민트 팔레트 ============ */
@@ -1024,6 +1025,19 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </a>
 </div>
 
+<!-- AI CHATBOT WIDGET (Gemini Gem 연동) -->
+<div class="ai-chatbot-widget" id="aiChatbotWidget">
+  <div class="ai-chatbot-bubble" id="aiChatbotBubble">
+    <div class="ai-chatbot-bubble-title">🤖 AI 상담</div>
+    <div class="ai-chatbot-bubble-name">라바어린이집</div>
+    <div class="ai-chatbot-bubble-sub">아이양육챗봇</div>
+  </div>
+  <button type="button" class="ai-chatbot-btn" id="aiChatbotBtn" aria-label="라바어린이집 AI 상담 챗봇 열기">
+    <img src="images/lava-logo.png" alt="라바어린이집 로고" class="ai-chatbot-logo">
+  </button>
+</div>
+
+<script src="chatbot.js"></script>
 <script>
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
