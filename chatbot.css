@@ -92,7 +92,7 @@
 .ai-chatbot-logo { width: 100%; height: 100%; border-radius: 50%; display: block; }
 
 @media (max-width: 560px) {
-  .ai-chatbot-widget { right: 20px; bottom: 24px; gap: 8px; }
+  .ai-chatbot-widget { right: 20px; bottom: 96px; gap: 8px; }
   .ai-chatbot-btn { width: 72px; height: 72px; border-width: 3px; }
   .ai-chatbot-bubble { padding: 8px 14px; }
   .ai-chatbot-bubble-title { font-size: 11.5px; }
