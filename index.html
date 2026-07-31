@@ -19,6 +19,7 @@
 <meta name="twitter:image" content="https://anblue4-prog.github.io/lava-kindergarten/images/og-image.png" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="chatbot.css">
 
 <style>
 /* ============ 라바 노랑·민트 팔레트 ============ */
@@ -599,40 +600,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   .sticky-btn .lbl { display: none; }
 }
 
-/* ============ floating chatbot ============ */
-.floating-chatbot {
-  position: fixed; right: 28px; bottom: 28px; z-index: 999;
-  width: 84px; height: 84px; border-radius: 50%;
-  background: #FEE500; color: #3C1E1E;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 12px 32px rgba(58,40,0,0.28), 0 2px 8px rgba(0,0,0,0.12);
-  opacity: 0; transform: scale(0.5);
-  animation: chatbot-enter .6s cubic-bezier(.34,1.56,.64,1) .4s forwards;
-  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
-}
-.floating-chatbot:hover { transform: scale(1.08); box-shadow: 0 16px 38px rgba(58,40,0,0.34), 0 2px 8px rgba(0,0,0,0.14); }
-.floating-chatbot:active { transform: scale(0.94); }
-.floating-chatbot-inner {
-  display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
-  animation: chatbot-wiggle 3.6s ease-in-out 1.6s infinite;
-}
-.floating-chatbot-icon { width: 38px; height: 38px; }
-@keyframes chatbot-enter {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes chatbot-wiggle {
-  0%, 82%, 100% { transform: rotate(0deg) translateY(0); }
-  85% { transform: rotate(-10deg) translateY(-2px); }
-  88% { transform: rotate(10deg) translateY(-6px); }
-  91% { transform: rotate(-6deg) translateY(-2px); }
-  94% { transform: rotate(4deg) translateY(0); }
-}
-@media (max-width: 560px) {
-  .floating-chatbot { width: 64px; height: 64px; right: 16px; bottom: 16px; }
-  .floating-chatbot-icon { width: 30px; height: 30px; }
-}
-
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 </style>
@@ -1060,23 +1027,33 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </a>
 </div>
 
-<!-- FLOATING CHATBOT -->
-<a href="https://open.kakao.com/o/sS4eqmpf" target="_blank" rel="noopener" class="floating-chatbot" id="floatingChatbot" aria-label="카카오톡으로 상담하기">
-  <span class="floating-chatbot-inner">
-    <svg viewBox="0 0 24 24" fill="currentColor" class="floating-chatbot-icon"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.73 1.75 5.13 4.39 6.55-.17.62-.63 2.31-.72 2.67 0 0-.01.05.02.08s.08.01.08.01c.28-.04 3.22-2.1 3.74-2.47.81.12 1.65.18 2.49.18 5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
-  </span>
-</a>
+<!-- AI CHATBOT WIDGET -->
+<div class="ai-chatbot-widget" id="aiChatbotWidget">
+  <div class="ai-chatbot-bubble" id="aiChatbotBubble">
+    <div class="ai-chatbot-bubble-title">🤖 AI 상담</div>
+    <div class="ai-chatbot-bubble-name">라바어린이집</div>
+    <div class="ai-chatbot-bubble-sub">아이양육챗봇</div>
+  </div>
+  <button type="button" class="ai-chatbot-btn" id="aiChatbotBtn" aria-label="라바어린이집 AI 상담 챗봇 열기">
+    <svg class="ai-chatbot-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="58" fill="#fff"/>
+      <path d="M60 40 C 60 40, 45 20, 28 28 C 12 36, 14 58, 30 70 C 42 79, 60 90, 60 90 C 60 90, 78 79, 90 70 C 106 58, 108 36, 92 28 C 75 20, 60 40, 60 40 Z" fill="url(#aiChatHeartGrad)" opacity="0.94"/>
+      <path d="M14 34 A 46 46 0 0 1 106 34" fill="none" stroke="#7FE0D6" stroke-width="4" stroke-dasharray="6 5" stroke-linecap="round" opacity="0.85"/>
+      <path d="M18 92 A 46 46 0 0 0 102 92" fill="none" stroke="#4A2F1E" stroke-width="5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="aiChatHeartGrad" x1="10" y1="20" x2="100" y2="90" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FF8FA3"/>
+          <stop offset="30%" stop-color="#FFC93C"/>
+          <stop offset="60%" stop-color="#8FD694"/>
+          <stop offset="100%" stop-color="#5FB8E8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </button>
+</div>
 
+<script src="chatbot.js"></script>
 <script>
-  /* 플로팅 챗봇: 호버 중에는 흔들림 애니메이션 잠시 정지 */
-  (function () {
-    const bot = document.getElementById('floatingChatbot');
-    if (!bot) return;
-    const inner = bot.querySelector('.floating-chatbot-inner');
-    bot.addEventListener('mouseenter', () => { inner.style.animationPlayState = 'paused'; });
-    bot.addEventListener('mouseleave', () => { inner.style.animationPlayState = 'running'; });
-  })();
-
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
