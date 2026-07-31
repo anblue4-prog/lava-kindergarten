@@ -540,7 +540,7 @@ h2.section-title,
 .contact-card {
   max-width: 1200px; margin: 0 auto; background: #FFFFFF;
   border-radius: 32px; box-shadow: var(--shadow-lg);
-  padding: 80px 70px; box-sizing: border-box; text-align: center;
+  padding: 80px 70px; box-sizing: border-box; text-align: left;
 }
 .contact-card h2 {
   font-family: var(--font-body); font-weight: 800; font-size: clamp(26px, 3.2vw, 38px);
@@ -548,9 +548,9 @@ h2.section-title,
 }
 .contact-body {
   font-family: var(--font-body); font-weight: 500; font-size: 16px; color: #666;
-  line-height: 1.6; max-width: 640px; margin: 0 auto 40px;
+  line-height: 1.6; max-width: 640px; margin: 0 0 40px;
 }
-.contact-btns { display: flex; justify-content: center; gap: 24px; margin-bottom: 44px; }
+.contact-btns { display: flex; justify-content: flex-start; gap: 24px; margin-bottom: 44px; }
 .c-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   height: 64px; padding: 0 32px; border-radius: 999px;
@@ -561,8 +561,8 @@ h2.section-title,
 .c-btn.kakao { background: #FEE500; }
 .c-btn.insta { background: #FDE1EC; border: 1px solid var(--line); }
 .c-btn.call { background: var(--bg-deeper); }
-.contact-info-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; }
-.ci-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.contact-info-row { display: flex; justify-content: flex-start; gap: 56px; flex-wrap: wrap; }
+.ci-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .ci-label { font-family: var(--font-body); font-size: 13px; color: var(--ink-mute); }
 .ci-value { font-family: var(--font-body); font-weight: 700; font-size: 15px; color: var(--ink); }
 @media (max-width: 760px) {
@@ -891,7 +891,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   <div class="container">
     <div class="schedule-intro dual-head">
       <span class="schedule-intro-label">Safety &amp; Health</span>
-      <h2>건강한 성장,<br>안전한 환경</h2>
+      <h2>건강한 성장, 안전한 환경</h2>
       <p>건강한 먹거리와 체계적인 안전관리로 아이들의 하루를 든든하게 지켜갑니다.</p>
     </div>
     <div class="dual-card-grid">
@@ -927,7 +927,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     <div class="sec-head">
       <div>
         <span class="label">Visit Us</span>
-        <h2>언제든 편안하게<br>방문해 주세요</h2>
+        <h2>언제든 편안하게 방문해 주세요</h2>
       </div>
     </div>
     <div class="location-grid">
