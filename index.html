@@ -19,7 +19,6 @@
 <meta name="twitter:image" content="https://anblue4-prog.github.io/lava-kindergarten/images/og-image.png" />
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link rel="stylesheet" href="chatbot.css">
 
 <style>
 /* ============ 라바 노랑·민트 팔레트 ============ */
@@ -601,87 +600,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
-/* ============ 플로팅 로고 배지 (화면 위에 계속 떠 있는 로고) ============ */
-/* 바깥 래퍼: 위치 고정 + hover 확대 + 닫기 트랜지션 담당 */
-.floating-logo-badge {
-  position: fixed;
-  top: 100px;
-  right: 24px;
-  z-index: 998; /* AI 챗봇(999)보다는 아래, 다른 콘텐츠보다는 위 */
-  width: 82px;
-  height: 82px;
-  transition: opacity .35s ease, transform .35s ease;
-}
-/* 마우스를 올리면 살짝 확대 */
-.floating-logo-badge:hover {
-  transform: scale(1.1);
-}
-/* X 버튼 클릭 시: opacity와 scale이 함께 줄어들며 사라짐 */
-.floating-logo-badge.is-hidden {
-  opacity: 0;
-  transform: scale(0.5);
-  pointer-events: none;
-}
-
-/* 안쪽 래퍼: 위/아래/좌/우로 살짝 떠다니는 무한 반복 애니메이션만 담당 */
-/* (바깥 요소의 hover/닫기 transform과 겹치지 않도록 별도 요소로 분리) */
-.floating-logo-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 10px 26px rgba(58, 40, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  animation: floating-logo-drift 7s ease-in-out infinite;
-}
-.floating-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 투명 배경 PNG를 원형 안에 꽉 차게 표시 */
-  display: block;
-}
-
-/* 화면 위/아래/좌/우로 부드럽게 둥실둥실 떠다니는 움직임 (transform만 사용) */
-@keyframes floating-logo-drift {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(6px, -10px); }
-  50%  { transform: translate(-5px, -16px); }
-  75%  { transform: translate(-9px, -4px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* 닫기(X) 버튼: 배지 오른쪽 위 */
-.floating-logo-close {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: #fff;
-  font-size: 15px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 1;
-  transition: background .2s ease, transform .2s ease;
-}
-.floating-logo-close:hover {
-  background: var(--accent-3);
-  transform: scale(1.1);
-}
-
-/* 모바일 반응형: 크기와 위치만 살짝 축소 */
-@media (max-width: 560px) {
-  .floating-logo-badge { width: 60px; height: 60px; top: 88px; right: 16px; }
-  .floating-logo-close { width: 20px; height: 20px; font-size: 13px; }
-}
 </style>
 </head>
 <body>
@@ -1107,45 +1025,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </a>
 </div>
 
-<!-- AI CHATBOT WIDGET (Gemini Gem 연동) -->
-<div class="ai-chatbot-widget" id="aiChatbotWidget">
-  <div class="ai-chatbot-bubble" id="aiChatbotBubble">
-    <div class="ai-chatbot-bubble-title">🤖 AI 상담</div>
-    <div class="ai-chatbot-bubble-name">라바어린이집</div>
-    <div class="ai-chatbot-bubble-sub">아이양육챗봇</div>
-  </div>
-  <button type="button" class="ai-chatbot-btn" id="aiChatbotBtn" aria-label="라바어린이집 AI 상담 챗봇 열기">
-    <img src="images/lava-logo.png" alt="라바어린이집 로고" class="ai-chatbot-logo">
-  </button>
-</div>
-
-<!-- FLOATING LOGO BADGE: 화면에 계속 떠 있는 로고, X 버튼으로 닫을 수 있음 -->
-<div class="floating-logo-badge" id="floatingLogoBadge">
-  <button type="button" class="floating-logo-close" id="floatingLogoClose" aria-label="로고 닫기">×</button>
-  <div class="floating-logo-inner">
-    <img src="images/lava-logo.png" alt="라바어린이집 로고" class="floating-logo-img">
-  </div>
-</div>
-
-<script src="chatbot.js"></script>
 <script>
-  /* ============ 플로팅 로고 배지: X 버튼으로 닫기 ============ */
-  (function () {
-    const badge = document.getElementById('floatingLogoBadge');
-    const closeBtn = document.getElementById('floatingLogoClose');
-    if (!badge || !closeBtn) return;
-
-    closeBtn.addEventListener('click', function () {
-      // 닫힘 애니메이션(opacity + scale)을 위해 클래스만 추가하고,
-      // 트랜지션이 끝난 뒤 완전히 화면/레이아웃에서 제거합니다.
-      badge.classList.add('is-hidden');
-      badge.addEventListener('transitionend', function handleEnd() {
-        badge.style.display = 'none';
-        badge.removeEventListener('transitionend', handleEnd);
-      });
-    });
-  })();
-
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
