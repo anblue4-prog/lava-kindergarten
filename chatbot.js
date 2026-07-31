@@ -1,7 +1,7 @@
 /* ============ AI 상담 챗봇 플로팅 위젯 동작 스크립트 ============ */
 (function () {
   // 챗봇 상담 링크 — 나중에 이 값만 바꾸면 됩니다.
-  var CHATBOT_URL = "https://chatgpt.com";
+  var CHATBOT_URL = "https://gemini.google.com/gem/4099d8fbd553";
 
   function openChatbot() {
     window.open(CHATBOT_URL, "_blank", "noopener");
