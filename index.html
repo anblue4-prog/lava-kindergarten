@@ -545,7 +545,8 @@ h2.section-title,
 .contact-btns { display: flex; justify-content: flex-start; gap: 24px; }
 .c-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  height: 64px; padding: 0 32px; border-radius: 999px;
+  flex: 1 1 0; max-width: 220px;
+  height: 64px; padding: 0 24px; border-radius: 999px;
   font-family: var(--font-body); font-weight: 600; font-size: 15.5px; color: var(--ink);
   transition: transform .25s var(--ease), box-shadow .25s var(--ease); box-sizing: border-box;
 }
@@ -558,7 +559,7 @@ h2.section-title,
   .contact-card { padding: 56px 28px; border-radius: 24px; }
   .contact-card h2 { white-space: normal; }
   .contact-btns { flex-direction: column; }
-  .c-btn { width: 100%; }
+  .c-btn { flex: none; width: 100%; max-width: none; }
 }
 
 /* ============ footer ============ */
