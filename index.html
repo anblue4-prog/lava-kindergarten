@@ -329,6 +329,52 @@ h2.section-title,
 .btn-insta-cta svg { width: 16px; height: 16px; }
 @media (max-width: 600px) { .sec-insta-cta { padding: 22px; } .sec-insta-cta-title { font-size: 16px; } }
 
+/* ============ instagram feed section ============ */
+.insta-feed-card {
+  background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+  padding: 32px; box-sizing: border-box;
+}
+.insta-feed-profile {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid var(--line);
+}
+.insta-feed-avatar {
+  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+  object-fit: cover; border: 2px solid var(--card); box-shadow: 0 0 0 2px var(--accent-2);
+}
+.insta-feed-who { flex: 1; min-width: 160px; }
+.insta-feed-name { font-family: var(--font-body); font-weight: 700; font-size: 15.5px; color: var(--ink); }
+.insta-feed-handle { font-family: var(--font-body); font-size: 13.5px; color: var(--ink-mute); }
+.insta-feed-follow {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px;
+  background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); color: #fff;
+  font-family: var(--font-body); font-size: 13.5px; font-weight: 600; white-space: nowrap;
+  transition: transform .2s var(--ease), filter .2s var(--ease);
+}
+.insta-feed-follow:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.insta-feed-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.insta-feed-tile {
+  position: relative; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden;
+  display: block; background: var(--bg-deeper);
+}
+.insta-feed-tile img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s var(--ease);
+}
+.insta-feed-tile:hover img { transform: scale(1.08); }
+.insta-feed-tile::after {
+  content: ""; position: absolute; inset: 0; background: rgba(20,16,10,0);
+  transition: background .25s var(--ease);
+}
+.insta-feed-tile:hover::after { background: rgba(20,16,10,0.12); }
+@media (max-width: 700px) {
+  .insta-feed-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .insta-feed-card { padding: 20px; }
+}
 
 /* ============ director ============ */
 .director { background: #FBF3E6; padding: 0; }
@@ -869,6 +915,39 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
         <span>인스타그램 방문하기</span>
         <svg class="arrow-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section id="instagram">
+  <div class="container">
+    <div class="schedule-intro" style="margin-bottom: 20px;">
+      <span class="schedule-intro-label">우리 어린이집 모습</span>
+      <h2>사진으로 만나는<br>라바어린이집</h2>
+      <p>아이들이 행복하게 생활하는 일상을 담았어요.</p>
+    </div>
+    <p class="sec-insta-cta-label" style="margin-bottom: 20px;">📷 인스타그램 최신 소식</p>
+    <div class="insta-feed-card">
+      <div class="insta-feed-profile">
+        <img src="images/lava-logo.png" alt="라바어린이집 인스타그램 프로필" class="insta-feed-avatar">
+        <div class="insta-feed-who">
+          <div class="insta-feed-name">라바어린이집</div>
+          <div class="insta-feed-handle">@lava_kindergarten</div>
+        </div>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-follow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          팔로우
+        </a>
+      </div>
+      <div class="insta-feed-grid">
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리1.png" alt="라바어린이집 인스타그램 게시물"></a>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리2.png" alt="라바어린이집 인스타그램 게시물"></a>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리3.png" alt="라바어린이집 인스타그램 게시물"></a>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리4.png" alt="라바어린이집 인스타그램 게시물"></a>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리5.png" alt="라바어린이집 인스타그램 게시물"></a>
+        <a href="https://www.instagram.com/lava_kindergarten" target="_blank" rel="noopener" class="insta-feed-tile"><img src="images/갤러리6.png" alt="라바어린이집 인스타그램 게시물"></a>
+      </div>
     </div>
   </div>
 </section>
