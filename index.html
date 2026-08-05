@@ -599,6 +599,23 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
+/* ============ 양육챗봇 상단 플로팅 배지 ============ */
+.parenting-chatbot-badge {
+  position: fixed; top: 100px; right: 24px; z-index: 998;
+  width: 92px; height: 92px; border-radius: 50%;
+  box-shadow: 0 10px 28px rgba(58,40,0,0.22);
+  opacity: 0; transform: scale(0.5);
+  animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.parenting-chatbot-badge:hover { transform: scale(1.08); box-shadow: 0 14px 34px rgba(58,40,0,0.28); }
+.parenting-chatbot-badge:active { transform: scale(0.96); }
+.parenting-chatbot-badge img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+@keyframes pcb-enter { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 560px) {
+  .parenting-chatbot-badge { width: 68px; height: 68px; top: 88px; right: 16px; }
+}
+
 </style>
 </head>
 <body>
@@ -636,6 +653,11 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   <a href="#location" onclick="closeMenu()">오시는 길</a>
   <a href="#contact" onclick="closeMenu()">문의</a>
 </div>
+
+<!-- 양육챗봇 상단 플로팅 배지 (학부모가 언제든 클릭 가능) -->
+<a href="https://gemini.google.com/gem/1c_j-oRdsOS0KoOlvF_wfax5DA2j2lL8B?usp=sharing" target="_blank" rel="noopener" class="parenting-chatbot-badge" aria-label="궁금한 양육코칭 챗봇에게 질문하기">
+  <img src="images/parenting-chatbot-badge.png" alt="궁금한 양육코칭! 클릭 후 질문해주세요">
+</a>
 
 <!-- HERO — 풀사진 배경 -->
 <section class="hero">
