@@ -603,28 +603,45 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .parenting-chatbot-badge {
   position: fixed; top: 100px; right: 24px; z-index: 998;
   width: 92px; height: 92px;
-  opacity: 0; transform: scale(0.5);
+  opacity: 0; scale: 0.5;
   animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards;
-  transition: transform .25s var(--ease);
+  transition: opacity .35s ease, scale .35s ease;
 }
-.parenting-chatbot-badge:hover { transform: scale(1.08); }
-.parenting-chatbot-badge:active { transform: scale(0.96); }
-/* 안쪽 래퍼: 화면 안에서 계속 살짝 움직이는(둥실둥실 떠다니는) 애니메이션 전담 */
-/* (바깥 요소의 hover/진입 transform과 겹치지 않도록 별도 요소로 분리) */
-.parenting-chatbot-badge-inner {
+.parenting-chatbot-badge.is-hidden { opacity: 0; scale: 0.5; pointer-events: none; }
+/* PC: 크게 지그재그로 화면 안을 움직임 (translate는 scale/opacity와 별개 속성이라 서로 겹치지 않음) */
+@media (min-width: 561px) {
+  .parenting-chatbot-badge:not(.is-hidden) {
+    animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards, pcb-zigzag 9s ease-in-out 1.2s infinite;
+  }
+}
+.parenting-chatbot-link {
   display: block; width: 100%; height: 100%; border-radius: 50%;
   box-shadow: 0 10px 28px rgba(58,40,0,0.22);
-  animation: pcb-drift 6s ease-in-out infinite;
+  transition: transform .25s var(--ease);
 }
-.parenting-chatbot-badge-inner img { width: 100%; height: 100%; border-radius: 50%; display: block; }
-@keyframes pcb-enter { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
-@keyframes pcb-drift {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(-10px, 12px); }
-  50%  { transform: translate(8px, 22px); }
-  75%  { transform: translate(12px, 6px); }
-  100% { transform: translate(0, 0); }
+.parenting-chatbot-link:hover { transform: scale(1.08); }
+.parenting-chatbot-link:active { transform: scale(0.96); }
+.parenting-chatbot-link img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+.parenting-chatbot-close {
+  position: absolute; top: -6px; right: -6px; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--ink); color: #fff; font-size: 16px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25); z-index: 2;
+  transition: background .2s ease, transform .2s ease;
 }
+.parenting-chatbot-close:hover { background: var(--accent-3); transform: scale(1.1); }
+@keyframes pcb-enter { from { opacity: 0; scale: 0.5; } to { opacity: 1; scale: 1; } }
+@keyframes pcb-zigzag {
+  0%   { translate: 0 0; }
+  15%  { translate: -55px -25px; }
+  30%  { translate: 45px -40px; }
+  45%  { translate: -40px 15px; }
+  60%  { translate: 55px 30px; }
+  75%  { translate: -35px 40px; }
+  90%  { translate: 25px -15px; }
+  100% { translate: 0 0; }
+}
+/* 모바일: 지그재그 없이 오른쪽에 고정된 위치 유지 */
 @media (max-width: 560px) {
   .parenting-chatbot-badge { width: 68px; height: 68px; top: 88px; right: 16px; }
 }
@@ -667,12 +684,13 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   <a href="#contact" onclick="closeMenu()">문의</a>
 </div>
 
-<!-- 양육챗봇 상단 플로팅 배지 (학부모가 언제든 클릭 가능, 화면 안에서 계속 움직임) -->
-<a href="https://gemini.google.com/gem/1c_j-oRdsOS0KoOlvF_wfax5DA2j2lL8B?usp=sharing" target="_blank" rel="noopener" class="parenting-chatbot-badge" aria-label="궁금한 양육코칭 챗봇에게 질문하기">
-  <span class="parenting-chatbot-badge-inner">
+<!-- 양육챗봇 상단 플로팅 배지 (PC 지그재그로 움직임 / 모바일 오른쪽 고정, 언제든 X로 닫기 가능) -->
+<div class="parenting-chatbot-badge" id="parentingChatbotBadge">
+  <button type="button" class="parenting-chatbot-close" id="parentingChatbotClose" aria-label="양육챗봇 배지 닫기">×</button>
+  <a href="https://gemini.google.com/gem/4099d8fbd553" target="_blank" rel="noopener" class="parenting-chatbot-link" aria-label="라바어린이집 학부모상담 챗봇에게 질문하기">
     <img src="images/parenting-chatbot-badge.png" alt="궁금한 양육코칭! 클릭 후 질문해주세요">
-  </span>
-</a>
+  </a>
+</div>
 
 <!-- HERO — 풀사진 배경 -->
 <section class="hero">
@@ -1062,6 +1080,20 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 </div>
 
 <script>
+  /* 양육챗봇 배지: X 버튼으로 언제든 닫기 */
+  (function () {
+    const badge = document.getElementById('parentingChatbotBadge');
+    const closeBtn = document.getElementById('parentingChatbotClose');
+    if (!badge || !closeBtn) return;
+    closeBtn.addEventListener('click', function () {
+      badge.classList.add('is-hidden');
+      badge.addEventListener('transitionend', function handleEnd() {
+        badge.style.display = 'none';
+        badge.removeEventListener('transitionend', handleEnd);
+      });
+    });
+  })();
+
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
