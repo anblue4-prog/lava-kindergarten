@@ -599,6 +599,69 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
+/* 양육챗봇 플로팅 배지 */
+.parenting-chatbot-badge {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  z-index: 998;
+  width: 112px;
+  height: 112px;
+  opacity: 0;
+  scale: 0.5;
+  animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards;
+  transition: opacity .35s ease, scale .35s ease;
+}
+.parenting-chatbot-badge.is-hidden {
+  opacity: 0;
+  scale: 0.5;
+  pointer-events: none;
+  animation: none;
+}
+.parenting-chatbot-link {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 10px 28px rgba(58,40,0,0.22);
+  transition: transform .25s var(--ease);
+}
+.parenting-chatbot-link:hover { transform: scale(1.08); }
+.parenting-chatbot-link:active { transform: scale(0.96); }
+.parenting-chatbot-link img { width: 100%; height: 100%; border-radius: 50%; display: block; object-fit: cover; }
+.parenting-chatbot-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  z-index: 2;
+  transition: background .2s ease, transform .2s ease;
+}
+.parenting-chatbot-close:hover { background: var(--bg-deeper); transform: scale(1.1); }
+@keyframes pcb-enter {
+  from { opacity: 0; scale: 0.5; }
+  to   { opacity: 1; scale: 1; }
+}
+@media (max-width: 560px) {
+  .parenting-chatbot-badge { top: 88px; right: 14px; width: 92px; height: 92px; }
+  .parenting-chatbot-link { width: 74px; height: 74px; }
+  .parenting-chatbot-close { width: 26px; height: 26px; font-size: 15px; }
+}
+
 </style>
 </head>
 <body>
@@ -635,6 +698,13 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   <a href="#meals-safety" onclick="closeMenu()">급식·건강</a>
   <a href="#location" onclick="closeMenu()">오시는 길</a>
   <a href="#contact" onclick="closeMenu()">문의</a>
+</div>
+
+<div class="parenting-chatbot-badge" id="parentingChatbotBadge">
+  <button type="button" class="parenting-chatbot-close" id="parentingChatbotClose" aria-label="양육챗봇 배지 닫기">×</button>
+  <a href="https://gemini.google.com/gem/1c_j-oRdsOS0KoOlvF_wfax5DA2j2lL8B?usp=sharing" target="_blank" rel="noopener" class="parenting-chatbot-link" aria-label="궁금한 양육코칭! 클릭 후 질문해주세요">
+    <img src="images/parenting-chatbot-badge.png" alt="궁금한 양육코칭! 클릭 후 질문해주세요">
+  </a>
 </div>
 
 <!-- HERO — 풀사진 배경 -->
@@ -1025,6 +1095,24 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 </div>
 
 <script>
+  /* 양육챗봇 배지: X 버튼으로 언제든 닫기 */
+  (function () {
+    var badge = document.getElementById('parentingChatbotBadge');
+    var closeBtn = document.getElementById('parentingChatbotClose');
+    if (!badge || !closeBtn) return;
+    closeBtn.addEventListener('click', function () {
+      badge.classList.add('is-hidden');
+      var hidden = false;
+      function hideNow() {
+        if (hidden) return;
+        hidden = true;
+        badge.style.display = 'none';
+      }
+      badge.addEventListener('transitionend', hideNow, { once: true });
+      setTimeout(hideNow, 400);
+    });
+  })();
+
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
