@@ -599,67 +599,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
-/* ============ 양육챗봇 플로팅 배지 (스크롤해도 항상 화면 오른쪽 아래 고정) ============ */
-.parenting-chatbot-badge {
-  position: fixed; bottom: 24px; right: 24px; z-index: 998;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  opacity: 0; scale: 0.5;
-  animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards;
-  transition: opacity .35s ease, scale .35s ease;
-}
-.parenting-chatbot-badge.is-hidden { opacity: 0; scale: 0.5; pointer-events: none; animation: none; }
-/* PC: 천천히 원을 그리듯 움직임 (translate는 scale/opacity와 별개 속성이라 서로 겹치지 않음) */
-@media (min-width: 561px) {
-  .parenting-chatbot-badge:not(.is-hidden) {
-    animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards, pcb-circle 11s linear 1.2s infinite;
-  }
-}
-.parenting-chatbot-circle-wrap { position: relative; width: 92px; height: 92px; }
-.parenting-chatbot-link {
-  display: block; width: 100%; height: 100%; border-radius: 50%;
-  box-shadow: 0 10px 28px rgba(58,40,0,0.22);
-  transition: transform .25s var(--ease);
-}
-.parenting-chatbot-link:hover { transform: scale(1.08); }
-.parenting-chatbot-link:active { transform: scale(0.96); }
-.parenting-chatbot-link img { width: 100%; height: 100%; border-radius: 50%; display: block; }
-.parenting-chatbot-close {
-  position: absolute; top: -6px; right: -6px; width: 26px; height: 26px; border-radius: 50%;
-  background: #fff; color: var(--ink); font-size: 16px; line-height: 1;
-  border: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2;
-  transition: background .2s ease, transform .2s ease;
-}
-.parenting-chatbot-close:hover { background: var(--bg-deeper); transform: scale(1.1); }
-/* "AI 양육상담" 문구 — 클릭하면 챗봇으로 바로 연결 */
-.parenting-chatbot-label {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 8px 18px; border-radius: 999px; background: #fff;
-  box-shadow: 0 6px 18px rgba(58,40,0,0.18);
-  font-family: var(--font-body); font-weight: 700; font-size: 13px; color: var(--accent-3);
-  white-space: nowrap; transition: transform .2s var(--ease), box-shadow .2s var(--ease);
-}
-.parenting-chatbot-label:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(58,40,0,0.24); }
-@keyframes pcb-enter { from { opacity: 0; scale: 0.5; } to { opacity: 1; scale: 1; } }
-@keyframes pcb-circle {
-  0%    { translate: 0 0; }
-  12.5% { translate: 30px -30px; }
-  25%   { translate: 42px 0; }
-  37.5% { translate: 30px 30px; }
-  50%   { translate: 0 42px; }
-  62.5% { translate: -30px 30px; }
-  75%   { translate: -42px 0; }
-  87.5% { translate: -30px -30px; }
-  100%  { translate: 0 0; }
-}
-/* 모바일: 움직임 없이 오른쪽 아래에 고정, 하단 고정바와 겹치지 않도록 여유 확보 */
-@media (max-width: 560px) {
-  .parenting-chatbot-badge { bottom: 100px; right: 16px; }
-  .parenting-chatbot-circle-wrap { width: 68px; height: 68px; }
-  .parenting-chatbot-label { font-size: 11.5px; padding: 6px 14px; }
-}
-
 </style>
 </head>
 <body>
@@ -696,17 +635,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   <a href="#meals-safety" onclick="closeMenu()">급식·건강</a>
   <a href="#location" onclick="closeMenu()">오시는 길</a>
   <a href="#contact" onclick="closeMenu()">문의</a>
-</div>
-
-<!-- 양육챗봇 플로팅 배지 (스크롤해도 항상 화면 오른쪽 아래 고정, PC는 원을 그리듯 이동, 언제든 X로 닫기 가능) -->
-<div class="parenting-chatbot-badge" id="parentingChatbotBadge">
-  <div class="parenting-chatbot-circle-wrap">
-    <button type="button" class="parenting-chatbot-close" id="parentingChatbotClose" aria-label="양육챗봇 배지 닫기">×</button>
-    <a href="https://gemini.google.com/gem/4099d8fbd553" target="_blank" rel="noopener" class="parenting-chatbot-link" aria-label="AI 양육상담 챗봇에게 질문하기">
-      <img src="images/parenting-chatbot-badge.png" alt="궁금한 양육코칭! 클릭 후 질문해주세요">
-    </a>
-  </div>
-  <a href="https://gemini.google.com/gem/4099d8fbd553" target="_blank" rel="noopener" class="parenting-chatbot-label">AI 양육상담</a>
 </div>
 
 <!-- HERO — 풀사진 배경 -->
@@ -1097,25 +1025,6 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 </div>
 
 <script>
-  /* 양육챗봇 배지: X 버튼으로 언제든 닫기 */
-  (function () {
-    const badge = document.getElementById('parentingChatbotBadge');
-    const closeBtn = document.getElementById('parentingChatbotClose');
-    if (!badge || !closeBtn) return;
-    closeBtn.addEventListener('click', function () {
-      badge.classList.add('is-hidden');
-      // transitionend가 정상적으로 오면 그때 감추고, 혹시 안 오더라도 0.4초 뒤 확실히 감춤
-      let hidden = false;
-      function hideNow() {
-        if (hidden) return;
-        hidden = true;
-        badge.style.display = 'none';
-      }
-      badge.addEventListener('transitionend', hideNow, { once: true });
-      setTimeout(hideNow, 400);
-    });
-  })();
-
   /* 모바일 메뉴 */
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
