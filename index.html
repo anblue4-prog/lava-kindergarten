@@ -477,58 +477,58 @@ h2.section-title,
   .gallery-grid { grid-template-columns: 1fr; }
 }
 
-/* ============ instagram ============ */
-.insta-follow-btn {
+/* ============ daily life (우리 어린이집 모습) ============ */
+.daily-life-actions { display: flex; gap: 14px; margin: 4px 0 44px; flex-wrap: wrap; }
+.daily-life-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 15px 28px;
+  gap: 8px;
+  padding: 14px 26px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF);
-  color: #fff;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 15px;
-  box-shadow: var(--shadow);
-  margin: 4px 0 52px;
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  font-weight: 600;
+  font-size: 14.5px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
 }
-.insta-follow-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.insta-follow-btn .ig-icon { width: 20px; height: 20px; flex-shrink: 0; }
-.insta-follow-btn .ig-handle { opacity: 0.95; }
-.insta-follow-btn .ig-sep { opacity: 0.6; }
-.insta-follow-btn .arrow-inline { width: 16px; height: 16px; transition: transform .3s var(--ease); }
-.insta-follow-btn:hover .arrow-inline { transform: translateX(4px); }
-.insta-post-grid {
+.daily-life-btn .dl-emoji { font-size: 17px; line-height: 1; }
+.daily-life-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent-2); }
+.daily-life-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
-.insta-post {
+.daily-life-photo {
   position: relative;
   display: block;
   aspect-ratio: 1 / 1;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--card);
   box-shadow: var(--shadow-sm);
   opacity: 0; transform: translateY(24px) scale(0.97);
   transition: opacity .6s var(--ease), transform .6s var(--ease), box-shadow .3s var(--ease);
 }
-.insta-post.is-visible { opacity: 1; transform: translateY(0) scale(1); }
-.insta-post:hover { box-shadow: var(--shadow); }
-.insta-post img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
-.insta-post:hover img { transform: scale(1.08); }
-@media (max-width: 900px) {
-  .insta-post-grid { gap: 12px; }
+.daily-life-photo.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+.daily-life-photo:hover { box-shadow: var(--shadow); }
+.daily-life-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.daily-life-photo:hover img { transform: scale(1.06); }
+@media (min-width: 901px) {
+  .daily-life-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 420px) {
+  .daily-life-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .insta-follow-btn { padding: 13px 22px; font-size: 14px; margin-bottom: 36px; }
-  .insta-post-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .insta-post { border-radius: 12px; }
+  .daily-life-btn { padding: 12px 20px; font-size: 13.5px; }
+  .daily-life-grid { gap: 10px; }
+  .daily-life-photo { border-radius: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .insta-post { opacity: 1; transform: none; transition: none; }
+  .daily-life-photo { opacity: 1; transform: none; transition: none; }
 }
 
 /* ============ location ============ */
@@ -986,33 +986,31 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </div>
 </section>
 
-<!-- INSTAGRAM -->
-<section id="instagram">
+<!-- DAILY LIFE (우리 어린이집 모습) -->
+<section id="daily-life">
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label">Instagram</span>
-        <h2>사진으로 만나는<br>라바어린이집 인스타그램에서</h2>
+        <span class="label">우리 어린이집 모습</span>
+        <h2>사진으로 만나는<br>라바어린이집</h2>
       </div>
-      <p>아이들의 오늘은 인스타그램에 차곡차곡 쌓이고 있습니다.<br>놀이하는 모습, 계절 활동, 특별한 프로그램, 아이들의 성장 이야기를 이곳에서 만나보세요.</p>
+      <p>아이들의 행복한 일상과 따뜻한 성장 이야기를<br>사진으로 만나보세요.</p>
     </div>
-    <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-follow-btn">
-      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      <span class="ig-handle">@lava_kindergarten</span>
-      <span class="ig-sep">·</span>
-      <span>팔로우</span>
-      <svg class="arrow-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-    <div class="insta-post-grid" id="instaPostGrid">
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-1.jpg" alt="라바어린이집 인스타그램 게시물 1" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-2.jpg" alt="라바어린이집 인스타그램 게시물 2" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-3.jpg" alt="라바어린이집 인스타그램 게시물 3" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-4.jpg" alt="라바어린이집 인스타그램 게시물 4" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-5.jpg" alt="라바어린이집 인스타그램 게시물 5" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/insta-real-6.jpg" alt="라바어린이집 인스타그램 게시물 6" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/프로그램_숲속아이.png" alt="라바어린이집 인스타그램 게시물 7" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/프로그램_숲체험.png" alt="라바어린이집 인스타그램 게시물 8" loading="lazy"></a>
-      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="insta-post"><img src="images/프로그램_쥬니멀.png" alt="라바어린이집 인스타그램 게시물 9" loading="lazy"></a>
+    <div class="daily-life-actions">
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-btn">
+        <span class="dl-emoji">📸</span> 인스타그램 최신소식
+      </a>
+      <a href="#gallery" class="daily-life-btn">
+        <span class="dl-emoji">🏫</span> 일상사진
+      </a>
+    </div>
+    <div class="daily-life-grid">
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/daily-4.jpg" alt="매일 즐거운 바깥놀이" loading="lazy"></a>
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/daily-2.jpg" alt="환하게 웃는 아이들" loading="lazy"></a>
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/daily-3.jpg" alt="스스로 익히는 생활 습관" loading="lazy"></a>
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/insta-real-6.jpg" alt="다 함께 손잡고 걷는 바깥산책" loading="lazy"></a>
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/insta-real-5.jpg" alt="숲체험 활동" loading="lazy"></a>
+      <a href="https://www.instagram.com/lava_kindergarten/" target="_blank" rel="noopener" class="daily-life-photo"><img src="images/daily-1.jpg" alt="라바어린이집 교육철학" loading="lazy"></a>
     </div>
   </div>
 </section>
@@ -1242,22 +1240,22 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  /* 인스타그램 게시물 그리드 등장 애니메이션 */
-  const instaPosts = document.querySelectorAll('.insta-post');
-  if (instaPosts.length && 'IntersectionObserver' in window) {
-    const instaObserver = new IntersectionObserver((entries) => {
+  /* 우리 어린이집 모습 갤러리 등장 애니메이션 */
+  const dailyLifePhotos = document.querySelectorAll('.daily-life-photo');
+  if (dailyLifePhotos.length && 'IntersectionObserver' in window) {
+    const dailyLifeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const i = Array.from(instaPosts).indexOf(entry.target);
+          const i = Array.from(dailyLifePhotos).indexOf(entry.target);
           entry.target.style.transitionDelay = (i % 3) * 0.08 + 's';
           entry.target.classList.add('is-visible');
-          instaObserver.unobserve(entry.target);
+          dailyLifeObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15 });
-    instaPosts.forEach(el => instaObserver.observe(el));
+    dailyLifePhotos.forEach(el => dailyLifeObserver.observe(el));
   } else {
-    instaPosts.forEach(el => el.classList.add('is-visible'));
+    dailyLifePhotos.forEach(el => el.classList.add('is-visible'));
   }
 
   /* 부드러운 스크롤 */
