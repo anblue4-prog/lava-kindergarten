@@ -608,10 +608,10 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   transition: opacity .35s ease, scale .35s ease;
 }
 .parenting-chatbot-badge.is-hidden { opacity: 0; scale: 0.5; pointer-events: none; animation: none; }
-/* PC: 크게 지그재그로 화면 안을 움직임 (translate는 scale/opacity와 별개 속성이라 서로 겹치지 않음) */
+/* PC: 천천히 원을 그리듯 움직임 (translate는 scale/opacity와 별개 속성이라 서로 겹치지 않음) */
 @media (min-width: 561px) {
   .parenting-chatbot-badge:not(.is-hidden) {
-    animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards, pcb-zigzag 9s ease-in-out 1.2s infinite;
+    animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards, pcb-circle 11s linear 1.2s infinite;
   }
 }
 .parenting-chatbot-link {
@@ -632,19 +632,20 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 }
 .parenting-chatbot-close:hover { background: var(--bg-deeper); transform: scale(1.1); }
 @keyframes pcb-enter { from { opacity: 0; scale: 0.5; } to { opacity: 1; scale: 1; } }
-@keyframes pcb-zigzag {
-  0%   { translate: 0 0; }
-  15%  { translate: -55px -25px; }
-  30%  { translate: 45px -40px; }
-  45%  { translate: -40px 15px; }
-  60%  { translate: 55px 30px; }
-  75%  { translate: -35px 40px; }
-  90%  { translate: 25px -15px; }
-  100% { translate: 0 0; }
+@keyframes pcb-circle {
+  0%    { translate: 0 0; }
+  12.5% { translate: 30px -30px; }
+  25%   { translate: 42px 0; }
+  37.5% { translate: 30px 30px; }
+  50%   { translate: 0 42px; }
+  62.5% { translate: -30px 30px; }
+  75%   { translate: -42px 0; }
+  87.5% { translate: -30px -30px; }
+  100%  { translate: 0 0; }
 }
-/* 모바일: 지그재그 없이 하단 오른쪽에 고정된 위치 유지 */
+/* 모바일: 움직임 없이 상단 오른쪽에 고정된 위치 유지 */
 @media (max-width: 560px) {
-  .parenting-chatbot-badge { width: 68px; height: 68px; top: auto; bottom: 100px; right: 16px; }
+  .parenting-chatbot-badge { width: 68px; height: 68px; top: 88px; right: 16px; }
 }
 
 </style>
