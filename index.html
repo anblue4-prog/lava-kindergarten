@@ -607,7 +607,7 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   animation: pcb-enter .6s cubic-bezier(.34,1.56,.64,1) .5s forwards;
   transition: opacity .35s ease, scale .35s ease;
 }
-.parenting-chatbot-badge.is-hidden { opacity: 0; scale: 0.5; pointer-events: none; }
+.parenting-chatbot-badge.is-hidden { opacity: 0; scale: 0.5; pointer-events: none; animation: none; }
 /* PC: 크게 지그재그로 화면 안을 움직임 (translate는 scale/opacity와 별개 속성이라 서로 겹치지 않음) */
 @media (min-width: 561px) {
   .parenting-chatbot-badge:not(.is-hidden) {
@@ -1087,10 +1087,15 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     if (!badge || !closeBtn) return;
     closeBtn.addEventListener('click', function () {
       badge.classList.add('is-hidden');
-      badge.addEventListener('transitionend', function handleEnd() {
+      // transitionend가 정상적으로 오면 그때 감추고, 혹시 안 오더라도 0.4초 뒤 확실히 감춤
+      let hidden = false;
+      function hideNow() {
+        if (hidden) return;
+        hidden = true;
         badge.style.display = 'none';
-        badge.removeEventListener('transitionend', handleEnd);
-      });
+      }
+      badge.addEventListener('transitionend', hideNow, { once: true });
+      setTimeout(hideNow, 400);
     });
   })();
 
