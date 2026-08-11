@@ -653,6 +653,31 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
 .arrow-inline { width: 14px; height: 14px; }
 ::selection { background: color-mix(in srgb, var(--accent) 55%, transparent); color: var(--ink); }
 
+/* 배경음악 ON/OFF 버튼 */
+.bgm-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.bgm-toggle:hover { transform: scale(1.08); box-shadow: var(--shadow); }
+.bgm-toggle:active { transform: scale(0.94); }
+@media (max-width: 560px) {
+  .bgm-toggle { width: 38px; height: 38px; font-size: 15px; bottom: 14px; left: 14px; }
+}
+
 /* 양육챗봇 플로팅 배지 */
 .parenting-chatbot-badge {
   position: fixed;
@@ -882,7 +907,8 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
   </div>
 </section>
 
-<audio id="bgm" src="media/라바원가.mp4" autoplay muted loop preload="auto" style="display:none"></audio>
+<audio id="bgm" src="media/라바원가.mp4" loop preload="auto" style="display:none"></audio>
+<button type="button" class="bgm-toggle" id="bgmToggle" aria-label="배경음악 켜기/끄기" aria-pressed="true">🔊</button>
 
 <!-- DIRECTOR -->
 <section class="director" id="director">
@@ -1211,17 +1237,58 @@ footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 80
     });
   }
 
-  /* 배경음악: 자동 재생 + 반복, 화면에 노출 없음 */
+  /* 배경음악: 자동 재생(가능하면 즉시, 아니면 첫 클릭/터치 시) + 반복 + ON/OFF 버튼 */
   const bgm = document.getElementById('bgm');
+  const bgmToggle = document.getElementById('bgmToggle');
   if (bgm) {
-    bgm.play().catch(() => {});
-    const unmuteBgm = () => {
-      bgm.muted = false;
-      bgm.volume = 1;
-      bgm.play().catch(() => {});
-      ['click','touchstart','keydown','scroll'].forEach(evt => document.removeEventListener(evt, unmuteBgm));
+    bgm.volume = 0.35;
+    let userMuted = false;
+
+    const setToggleIcon = () => {
+      if (!bgmToggle) return;
+      const playing = !bgm.paused && !bgm.muted;
+      bgmToggle.textContent = playing ? '🔊' : '🔇';
+      bgmToggle.setAttribute('aria-pressed', String(playing));
     };
-    ['click','touchstart','keydown','scroll'].forEach(evt => document.addEventListener(evt, unmuteBgm, { once: true, passive: true }));
+
+    const startUnmutedOnInteraction = () => {
+      const unmuteBgm = () => {
+        if (!userMuted) {
+          bgm.muted = false;
+          bgm.play().catch(() => {});
+        }
+        setToggleIcon();
+        ['click','touchstart','keydown','scroll'].forEach(evt => document.removeEventListener(evt, unmuteBgm));
+      };
+      ['click','touchstart','keydown','scroll'].forEach(evt => document.addEventListener(evt, unmuteBgm, { once: true, passive: true }));
+    };
+
+    bgm.play().then(() => {
+      setToggleIcon();
+    }).catch(() => {
+      bgm.muted = true;
+      bgm.play().then(() => {
+        setToggleIcon();
+        startUnmutedOnInteraction();
+      }).catch(() => {
+        setToggleIcon();
+        startUnmutedOnInteraction();
+      });
+    });
+
+    if (bgmToggle) {
+      bgmToggle.addEventListener('click', () => {
+        if (bgm.paused || bgm.muted) {
+          userMuted = false;
+          bgm.muted = false;
+          bgm.play().catch(() => {});
+        } else {
+          userMuted = true;
+          bgm.muted = true;
+        }
+        setToggleIcon();
+      });
+    }
   }
 
   /* 원장님 인사말 스크롤 등장 애니메이션 */
