@@ -461,7 +461,7 @@ const a=document.getElementById('bgm'),s=document.getElementById('snd');
 a.volume=.35;
 let userMuted=false;
 const ui=()=>{const on=!a.paused;s.textContent=on?'🔊':'🔇';s.setAttribute('aria-pressed',on?'true':'false')};
-a.addEventListener('play',ui);a.addEventListener('pause',ui);
+a.addEventListener('play',ui);a.addEventListener('pause',ui);a.addEventListener('playing',ui);ui();
 a.addEventListener('ended',()=>{a.currentTime=0;a.play().catch(()=>{})});
 const tryPlay=()=>{if(userMuted)return Promise.resolve();return a.play()};
 const evs=['pointerdown','touchstart','touchend','click','keydown','scroll','wheel'];
