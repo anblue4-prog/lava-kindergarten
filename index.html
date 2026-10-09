@@ -184,7 +184,19 @@ footer a{display:block}
 
 /* floating */
 .float{position:fixed;right:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.cb{position:relative}
+.cb{position:relative;animation:cbWander 70s ease-in-out infinite}
+.cb:hover{animation-play-state:paused}
+@keyframes cbWander{
+  0%{translate:0 0}
+  14%{translate:-30vw -22vh}
+  28%{translate:-62vw -48vh}
+  42%{translate:-40vw -8vh}
+  57%{translate:-68vw -30vh}
+  71%{translate:-22vw -52vh}
+  85%{translate:-48vw -18vh}
+  100%{translate:0 0}
+}
+@media (prefers-reduced-motion:reduce){.cb{animation:none}}
 .cb img{width:76px;height:76px;border-radius:50%;box-shadow:var(--shadow)}
 .cb .x{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;border:0;background:#fff;box-shadow:var(--shadow-sm);cursor:pointer;font-size:12px}
 .snd{width:46px;height:46px;border-radius:50%;border:0;background:var(--mint-light);box-shadow:var(--shadow);cursor:pointer;font-size:20px}
