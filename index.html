@@ -438,9 +438,7 @@ footer a{display:block}
 <div class="float">
   <div class="cb" id="cb"><button class="x" id="cbx" aria-label="닫기">✕</button>
     <a href="https://gemini.google.com/gem/1c_j-oRdsOS0KoOlvF_wfax5DA2j2lL8B?usp=sharing" target="_blank" rel="noopener"><img src="images/parenting-chatbot-badge.png" alt="양육코칭 챗봇"></a></div>
-  <button class="snd" id="snd" aria-label="배경음악" aria-pressed="false">🔇</button>
 </div>
-<audio id="bgm" src="media/라바원가.mp4" autoplay loop preload="auto" playsinline></audio>
 
 <script>
 const mn=document.getElementById('mnav');
@@ -457,17 +455,6 @@ const lb=document.getElementById('lb'),li=lb.querySelector('img');
 document.querySelectorAll('.grid img').forEach(i=>i.onclick=()=>{li.src=i.src;lb.classList.add('open')});
 lb.onclick=()=>lb.classList.remove('open');
 document.getElementById('cbx').onclick=()=>document.getElementById('cb').remove();
-const a=document.getElementById('bgm'),s=document.getElementById('snd');
-a.volume=.35;
-let userMuted=false;
-const ui=()=>{const on=!a.paused;s.textContent=on?'🔊':'🔇';s.setAttribute('aria-pressed',on?'true':'false')};
-a.addEventListener('play',ui);a.addEventListener('pause',ui);a.addEventListener('playing',ui);ui();
-a.addEventListener('ended',()=>{a.currentTime=0;a.play().catch(()=>{})});
-const tryPlay=()=>{if(userMuted)return Promise.resolve();return a.play()};
-const evs=['pointerdown','touchstart','touchend','click','keydown','scroll','wheel'];
-const unlock=e=>{if(e&&e.target&&e.target.closest&&e.target.closest('#snd'))return;tryPlay().then(()=>evs.forEach(t=>removeEventListener(t,unlock,true))).catch(()=>{})};
-tryPlay().catch(()=>evs.forEach(t=>addEventListener(t,unlock,{capture:true,passive:true})));
-s.onclick=()=>{if(a.paused){userMuted=false;a.play().catch(()=>{})}else{userMuted=true;a.pause()}};
 </script>
 </body>
 </html>
