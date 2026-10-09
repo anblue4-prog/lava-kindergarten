@@ -116,7 +116,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .tabs{display:flex;gap:8px;justify-content:center;margin-bottom:26px}
 .tabs button{border:var(--border);background:#fff;padding:9px 22px;border-radius:99px;font:inherit;font-weight:500;cursor:pointer;color:var(--text-mid)}
 .tabs button.on{background:var(--mint);border-color:var(--mint);color:var(--text-dark);font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;cursor:zoom-in;transition:.3s;box-shadow:var(--shadow-sm)}
 .grid img:hover{transform:scale(1.03)}
 .grid img.ct{object-fit:contain;background:#fff}
@@ -137,10 +137,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .note{background:var(--navy-light);border-radius:16px;padding:16px 20px;font-size:14px;color:var(--navy);margin-top:20px}
 
 /* FACILITY */
-.fac{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.fac figure{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm)}
-.fac img{width:100%;aspect-ratio:1;object-fit:cover}
-.fac figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;color:#fff;font-weight:700;font-size:14px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.fac{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fac figure{display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);min-width:0}
+.fac img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#fff}
+.fac figcaption{padding:10px 14px;font-weight:700;font-size:14px;color:var(--text-dark);text-align:center;background:#fff}
 
 /* SAFETY */
 .safe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -206,8 +206,8 @@ footer a{display:block}
   .menu{display:none}.burger{display:block}
   .about-grid,.dir-grid,.daily-grid,.map-grid{grid-template-columns:1fr;gap:28px}
   .cards3,.safe-grid{grid-template-columns:1fr}
-  .progs,.steps,.fac{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:repeat(2,1fr)}
+  .progs,.steps{grid-template-columns:repeat(2,1fr)}.fac{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fg{grid-template-columns:1fr}
 }
 @media(max-width:480px){.info-grid{grid-template-columns:1fr}}
