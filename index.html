@@ -117,7 +117,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .tabs{display:flex;gap:8px;justify-content:center;margin-bottom:26px}
 .tabs button{border:var(--border);background:#fff;padding:9px 22px;border-radius:99px;font:inherit;font-weight:500;cursor:pointer;color:var(--text-mid)}
 .tabs button.on{background:var(--mint);border-color:var(--mint);color:var(--text-dark);font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(max-width:600px){.grid{grid-template-columns:1fr;gap:16px}}
 .grid img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:18px;cursor:zoom-in;transition:.3s;box-shadow:var(--shadow-sm)}
 .grid img:hover{transform:scale(1.03)}
 .grid img.ct{object-fit:contain;background:#fff}
@@ -230,7 +231,6 @@ footer a{display:block}
   .about-grid,.dir-grid,.daily-grid,.map-grid{grid-template-columns:1fr;gap:28px}
   .cards3,.safe-grid{grid-template-columns:1fr}
   .progs,.steps{grid-template-columns:repeat(2,1fr)}.fac{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fg{grid-template-columns:1fr}
 }
 @media(max-width:480px){.info-grid{grid-template-columns:1fr}}
