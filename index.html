@@ -154,6 +154,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .scard li{padding:5px 0 5px 22px;position:relative;font-size:14.5px;color:var(--text-mid)}
 .scard li::before{content:"✓";position:absolute;left:0;color:var(--mint-dark);font-weight:700}
 
+/* FEES (수납액 안내) */
+.bg-cream{background:#FBF6EA}
+.fee-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.fee{background:#fff;border:2px solid #F3DDD3;border-radius:22px;padding:34px 20px 30px;text-align:center;transition:.25s}
+.fee:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.fee .blob{width:58px;height:44px;margin:0 auto 18px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:17px}
+.fee:nth-child(1) .blob{background:#F4B3D4;border-radius:44px 44px 6px 6px}
+.fee:nth-child(2) .blob{background:#B9DFA0;border-radius:46% 54% 50% 50%/55% 50% 50% 45%}
+.fee:nth-child(3) .blob{background:#FFC98B;border-radius:50% 50% 42% 58%/58% 46% 54% 42%}
+.fee h3{font-family:'Noto Sans KR',sans-serif;font-size:17px;font-weight:700;line-height:1.5;color:var(--text-dark)}
+.fee h3 small{display:block;font-size:14px;font-weight:500;color:var(--text-mid)}
+@media(max-width:600px){.fee-grid{grid-template-columns:1fr}.fee{padding:26px 18px 24px}}
+
 /* ADMISSION */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .step{background:#fff;border-radius:22px;padding:28px 22px;box-shadow:var(--shadow);text-align:center}
@@ -376,6 +389,17 @@ footer a{display:block}
         <li>등원 시 건강체크</li><li>발열 38.5도 이상 시 안정 후 귀가 조치</li><li>세스코 정기 방역</li><li>장난감 소독 및 방역 소독</li></ul></div>
       <div class="scard reveal"><div class="ic">🍽️</div><h3>급식</h3><div class="s">자연드림 식재료로 짓는 한 끼</div><ul>
         <li>모든 음식을 원내에서 직접 조리</li><li>간식 2회 + 점심, 주 2회 이상 제철 과일·채소</li><li>매월 식단표 가정 안내</li><li>알레르기 대체식·제거식 제공</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="fees" class="bg-cream">
+  <div class="container">
+    <div class="sec-head reveal"><div class="badge">어린이집 수납액 안내</div><h2>2026년 수납액 안내</h2><p>매월 어린이집에 납부할 비용은 얼마인가요?</p></div>
+    <div class="fee-grid">
+      <div class="fee reveal"><div class="blob">1</div><h3>특별활동 전액 지원</h3></div>
+      <div class="fee reveal"><div class="blob">2</div><h3>식판대장 비용지원</h3></div>
+      <div class="fee reveal"><div class="blob">3</div><h3>생애최초 입학·현장학습 지원<small>(2세 이상)</small></h3></div>
     </div>
   </div>
 </section>
